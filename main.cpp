@@ -1,20 +1,20 @@
 #include <iostream>
-#include "wizard.h"
-#include "backpack.h"
+#include "room.h"
 
 using namespace std;
 using namespace adventure;
 
 int main() {
-    cout << "Hello, World! FISK" << endl;
 
-    Wizard jokep("jokep");
+    Room r1("adrian");
+    Room r2("den stora lokalen");
+    Room r3("korv");
+    Room r4("apa");
 
-    Backpack mark(10,10,10,10,10);
+    r1.addNeighbor(0, &r2).addNeighbor(1, &r3).addNeighbor(2, &r4);
 
-    cout << jokep.name() << ", " << jokep.type() << endl;
+    cout << r1.directions() << endl;
 
-    cout << mark.weight() << ", " << mark.volume() << endl;
 
 
     return 0;

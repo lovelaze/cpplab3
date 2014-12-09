@@ -7,7 +7,9 @@ namespace adventure {
 
     class Room : public Indoor {
     public:
-
+        Room();
+        Room(std::string desc);
+        virtual ~Room();
 
     protected:
 

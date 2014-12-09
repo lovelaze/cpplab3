@@ -5,6 +5,7 @@
 #include "character.h"
 #include "item.h"
 #include <vector>
+#include <tuple>
 
 namespace adventure {
 
@@ -15,21 +16,33 @@ namespace adventure {
         Env(std::string desc);
         virtual ~Env();
 
-        void directions() const;
-        void description() const;
+        std::string directions() const;
+        std::string description() const;
 
-        virtual void neighbor(int direction) = 0;
+
+        Env & neighbor(int direction);
+        /*
         virtual bool enter(Character &) = 0;
         virtual bool leave(Character &) = 0;
         virtual bool pick_up(Item &) = 0;
         virtual bool drop(Item &) = 0;
+        */
+
+
+        Env & addNeighbor(int i, Env *);
+        void removeNeighbor(int i);
 
 
     protected:
         std::string description_;
-        std::vector<std::string> directions_;
+        std::vector<std::string * > directions_;
+        std::vector<Env *> neighbors_;
 
-        int num_directions_;
+        std::vector<Item *> items_;
+        std::vector<Character *> characters_;
+
+
+
 
     };
 
