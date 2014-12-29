@@ -9,9 +9,6 @@ bool Wizard::action() {
     return false;
 }
 
-void Wizard::go(int direction) {
-}
-
 bool Wizard::fight(Character &character) {
     return false;
 }

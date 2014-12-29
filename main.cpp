@@ -1,5 +1,6 @@
 #include <iostream>
 #include "room.h"
+#include "player.h"
 
 using namespace std;
 using namespace adventure;
@@ -13,8 +14,23 @@ int main() {
 
     r1.addNeighbor(0, &r2).addNeighbor(1, &r3).addNeighbor(2, &r4);
 
-    cout << r1.directions() << endl;
 
+
+    Player p("player");
+
+
+    r1.printCharacters();
+    p.change_room(&r1);
+    r1.printCharacters();
+
+    r2.printCharacters();
+    p.go(NORTH);
+    cout << p.current_room_->description() << endl;
+    r2.printCharacters();
+
+    //OBS
+    //ha ngn slags setroom i characterkontruktorn
+    //vill undvika rad 23
 
 
     return 0;

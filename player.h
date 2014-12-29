@@ -1,14 +1,17 @@
-#ifndef WIZARD_H
-#define WIZARD_H
+#ifndef PLAYER_H
+#define PLAYER_H
 
+#include "item.h"
 #include "human.h"
+#include "env.h"
+
 
 namespace adventure {
-
-    class Wizard : public Human {
+class Player : public Human {
 
     public:
-        Wizard(std::string name);
+        Player(std::string name);
+        ~Player();
 
         bool action();
         bool fight(Character & );
@@ -18,8 +21,10 @@ namespace adventure {
 
 
     };
-
 }
+
+
+
 
 
 #endif

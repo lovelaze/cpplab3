@@ -1,15 +1,21 @@
 #ifndef ENV_H
 #define ENV_H
 
+
 #include <string>
-#include "character.h"
+
 #include "item.h"
 #include <vector>
 #include <tuple>
 
+
+
 namespace adventure {
 
+    class Character;
+
     class Env {
+
 
     public:
         Env();
@@ -20,7 +26,8 @@ namespace adventure {
         std::string description() const;
 
 
-        Env & neighbor(int direction);
+
+        Env * neighbor(int direction);
         /*
         virtual bool enter(Character &) = 0;
         virtual bool leave(Character &) = 0;
@@ -32,19 +39,21 @@ namespace adventure {
         Env & addNeighbor(int i, Env *);
         void removeNeighbor(int i);
 
+        void addCharacter(Character *);
+        void removeCharacter(Character *);
+
+        void printItems();
+        void printCharacters();
+
 
     protected:
         std::string description_;
-        std::vector<std::string * > directions_;
         std::vector<Env *> neighbors_;
-
         std::vector<Item *> items_;
         std::vector<Character *> characters_;
 
-
-
-
     };
+
 
 
 }
