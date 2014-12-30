@@ -20,11 +20,11 @@ std::string Character::type() const {
 
 void Character::change_room(Env * env) {
     if (current_room_ != nullptr) {
-        current_room_->removeCharacter(this);
+        current_room_->leave(this);
     }
 
     current_room_ = env;
-    current_room_->addCharacter(this);
+    current_room_->enter(this);
 }
 
 void Character::go(Direction dir) {

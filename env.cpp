@@ -51,15 +51,16 @@ void Env::removeNeighbor(int i){
 }
 
 
-void Env::addCharacter(Character * c) {
+void Env::enter(Character * c) {
     if(std::find(characters_.begin(), characters_.end(), c) == characters_.end())
     {
         characters_.push_back(c);
     }
-
 }
 
-void Env::removeCharacter(Character *c) {
+
+
+void Env::leave(Character *c) {
 
     auto tmp = std::find(characters_.begin(), characters_.end(), c);
     if( tmp != characters_.end())

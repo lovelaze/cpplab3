@@ -24,7 +24,7 @@ int main() {
     r1.printCharacters();
 
     r2.printCharacters();
-    p.go(NORTH);
+    p.go(EAST);
     cout << p.current_room_->description() << endl;
     r2.printCharacters();
 
