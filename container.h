@@ -9,14 +9,19 @@ namespace adventure {
     class Container : public Item {
     public:
         Container();
-        Container(int weight, int volume, int price, int hold_weight, int hold_volume);
+        Container(std::string name, int weight, int volume, int price, int hold_weight, int hold_volume);
         virtual ~Container();
 
         int hold_weight() const;
         int hold_volume() const;
 
-        virtual bool add(Item &) = 0;
-        virtual bool remove(Item &) = 0;
+        int items_weight = 0;
+        int items_volume = 0;
+
+        bool add(Item *);
+        bool remove(Item *);
+
+        std::vector<Item *> items_;
 
 
     protected:
@@ -24,7 +29,8 @@ namespace adventure {
         int hold_volume_;
 
 
-
+    private:
+        bool fits(Item *);
     };
 
 

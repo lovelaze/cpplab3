@@ -8,13 +8,11 @@ namespace adventure {
     class Wizard : public Human {
 
     public:
-        Wizard(std::string name);
+        Wizard(std::string name, Env * current_room);
 
         bool action();
-        bool fight(Character & );
-        bool pick_up(Item &);
-        bool drop(Item &);
-        bool talk_to(Character &);
+        bool fight(Character * );
+        void talk_to(Character *);
 
 
     };

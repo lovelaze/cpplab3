@@ -9,7 +9,7 @@ namespace adventure {
 
     public:
         Human();
-        Human(std::string name);
+        Human(std::string name, Env * current_room);
         ~Human();
 
     };

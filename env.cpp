@@ -82,7 +82,17 @@ void Env::printCharacters() {
 void Env::printItems() {
     for (int i = 0; i < items_.size(); ++i) {
         if (items_[i] != nullptr) {
-            // std::cout << items_[i]->name() << std::endl;
+            std::cout << items_[i]->name() << std::endl;
         }
     }
+}
+
+Item * Env::pick_up(Item * item) {
+    auto tmp = std::find(items_.begin(), items_.end(), item);
+    items_.erase(tmp);
+    return item;
+}
+
+void Env::drop(Item * item) {
+    items_.push_back(item);
 }

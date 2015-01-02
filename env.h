@@ -31,10 +31,9 @@ namespace adventure {
 
         void enter(Character *);
         void leave(Character *);
-        /*
-        virtual bool pick_up(Item &) = 0;
-        virtual bool drop(Item &) = 0;
-        */
+        Item * pick_up(Item *);
+        void drop(Item *);
+
 
 
         Env & addNeighbor(int i, Env *);

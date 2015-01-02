@@ -2,7 +2,7 @@
 
 using namespace adventure;
 
-Player::Player(std::string name) : Human(name){
+Player::Player(std::string name, Env * current_room) : Human(name, current_room){
 }
 
 Player::~Player() {
@@ -14,19 +14,11 @@ bool Player::action() {
     return false;
 }
 
-bool Player::fight(Character &character) {
+bool Player::fight(Character * character) {
     return false;
 }
 
-bool Player::pick_up(Item &item) {
-    return false;
-}
+void Player::talk_to(Character * character) {
+    character->talk_to(this);
 
-
-bool Player::drop(Item &item) {
-    return false;
-}
-
-bool Player::talk_to(Character &character) {
-    return false;
 }

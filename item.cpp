@@ -5,7 +5,7 @@ using namespace adventure;
 Item::Item() {
 }
 
-Item::Item(int weight, int volume, int price) : weight_(weight), volume_(volume), price_(price) {
+Item::Item(std::string name, int weight, int volume, int price) : name_(name), weight_(weight), volume_(volume), price_(price) {
 
 }
 
@@ -23,4 +23,8 @@ int Item::volume() const {
 
 int Item::price() const {
     return price_;
+}
+
+std::string Item::name() const {
+    return name_;
 }

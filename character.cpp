@@ -1,6 +1,7 @@
 #include <iostream>
 #include "character.h"
 #include "env.h"
+#include "backpack.h"
 
 using namespace adventure;
 
@@ -8,6 +9,11 @@ Character::Character() {
 }
 
 Character::~Character() {
+}
+
+Character::Character(std::string name, std::string type, Env *current_room) : name_(name), type_(type), current_room_(current_room) {
+
+    current_room->enter(this);
 }
 
 std::string Character::name() const {
@@ -33,5 +39,55 @@ void Character::go(Direction dir) {
     }
 
     change_room(current_room_->neighbor(dir));
+
+}
+
+bool Character::has_backpack() const {
+    return backpack_ != nullptr;
+}
+
+bool Character::pick_up(Item *item) {
+    if (!has_backpack()) {
+
+        if (dynamic_cast<const Backpack *>(item) != 0) {
+            backpack_ = (Backpack *)item;
+            current_room_->pick_up(item);
+            return true;
+        }
+        return false;
+    }
+
+
+    if(backpack_->add(item)) {
+        current_room_->pick_up(item);
+    }
+
+
+    return true;
+}
+
+bool Character::drop(Item *item) {
+
+    if (item == backpack_) {
+        current_room_->drop(backpack_);
+        backpack_ = nullptr;
+    } else {
+        backpack_->remove(item);
+    }
+
+
+}
+
+void Character::print_backpack() const {
+
+    if (!has_backpack()) {
+        std::cout << "no backpack" << std::endl;
+    } else {
+        std::cout << backpack_->name() << ":" << std::endl;
+        for (int i = 0; i < backpack_->items_.size(); ++i) {
+            std::cout  << backpack_->items_[i]->name() << std::endl;
+        }
+    }
+
 
 }

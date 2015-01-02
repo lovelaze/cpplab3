@@ -1,26 +1,19 @@
+#include <iostream>
 #include "wizard.h"
 
 using namespace adventure;
 
-Wizard::Wizard(std::string name) : Human(name){
+Wizard::Wizard(std::string name, Env * current_room) : Human(name, current_room){
 }
 
 bool Wizard::action() {
     return false;
 }
 
-bool Wizard::fight(Character &character) {
+bool Wizard::fight(Character * character) {
     return false;
 }
+void Wizard::talk_to(Character * character) {
 
-bool Wizard::pick_up(Item &item) {
-    return false;
-}
-
-bool Wizard::drop(Item &item) {
-    return false;
-}
-
-bool Wizard::talk_to(Character &character) {
-    return false;
+    std::cout << "Hello, " << character->name() << ". I am a " << type() << " and I like to fish." << std::endl;
 }
