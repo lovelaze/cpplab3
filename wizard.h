@@ -10,8 +10,8 @@ namespace adventure {
     public:
         Wizard(std::string name, Env * current_room);
 
-        bool action();
-        bool fight(Character * );
+        void action();
+        void fight(Character * );
         void talk_to(Character *);
 
 

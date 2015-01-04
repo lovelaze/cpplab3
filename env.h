@@ -43,6 +43,7 @@ namespace adventure {
         void printItems();
         void printCharacters();
 
+        int get_random_valid_direction();
 
     protected:
         std::string description_;

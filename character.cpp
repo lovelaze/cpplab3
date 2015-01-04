@@ -1,7 +1,8 @@
 #include <iostream>
 #include "character.h"
 #include "env.h"
-#include "backpack.h"
+#include <ctime>
+
 
 using namespace adventure;
 
@@ -11,8 +12,8 @@ Character::Character() {
 Character::~Character() {
 }
 
-Character::Character(std::string name, std::string type, Env *current_room) : name_(name), type_(type), current_room_(current_room) {
-
+Character::Character(std::string name, std::string type, Env *current_room, int health, int damage, bool alive) : name_(name), type_(type), current_room_(current_room), health_(health), damage_(damage), alive_(alive) {
+    max_health_ = health_;
     current_room->enter(this);
 }
 
@@ -89,5 +90,17 @@ void Character::print_backpack() const {
         }
     }
 
+}
+
+
+bool Character::alive() {
+    return alive_;
+}
+
+
+
+void Character::go_to_random_neighbor() {
+
+    go(static_cast<Direction>(current_room_->get_random_valid_direction()));
 
 }

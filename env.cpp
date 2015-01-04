@@ -4,7 +4,7 @@
 #include <sstream>
 #include <algorithm>
 #include "character.h"
-#include "item.h"
+#include "common.h"
 
 using namespace adventure;
 
@@ -95,4 +95,28 @@ Item * Env::pick_up(Item * item) {
 
 void Env::drop(Item * item) {
     items_.push_back(item);
+}
+
+
+
+int Env::get_random_valid_direction() {
+
+
+
+    int temp = 0;
+    for (int i = 0; i < neighbors_.size(); ++i) {
+        if (neighbors_[i] != nullptr) ++temp;
+    }
+
+    int n = get_rand(0, temp-1);
+
+    int i = -1;
+    while (n >= 0) {
+        ++i;
+        if (neighbors_[i] != nullptr) {
+            --n;
+        }
+    }
+    return i;
+
 }

@@ -13,9 +13,10 @@ class Player : public Human {
         Player(std::string name, Env * current_room);
         ~Player();
 
-        bool action();
-        bool fight(Character * );
+        void action();
+        void fight(Character * );
         void talk_to(Character *);
+
 
 
     };
