@@ -39,7 +39,9 @@ void Character::go(int dir) {
         std::cout << "nullptr current_room_" << std::endl;
     }
 
+    Env * tmp_room = current_room_;
     change_room(current_room_->neighbor(dir));
+    std::cout << name() << " went from " << tmp_room->description() << " to " << current_room_->description() << std::endl;
 
 }
 

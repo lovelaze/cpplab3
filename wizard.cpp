@@ -20,9 +20,7 @@ void Wizard::action() {
         case 0:     //move to another room
             temp = go_to_random_neighbor();
 
-            if(temp>=0){
-                std::cout << name() << " went to " << tmp_room->neighbor(temp)->description() << std::endl;
-            }
+
             break;
 
         case 1:     //fight with player

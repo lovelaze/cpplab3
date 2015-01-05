@@ -3,9 +3,7 @@
 #include "player.h"
 #include "wizard.h"
 #include "common.h"
-#include <ctime>
-#include <stdlib.h>
-#include <stdexcept>
+#include "cli.h"
 
 using namespace std;
 using namespace adventure;
@@ -31,16 +29,17 @@ int main() {
     r1.drop(&backpack);
 
 
-    Player p("player", &r2);
+    Player p("player", &r1);
    
     Wizard w("adrian", &r2);
 
 
     w.action();
-    w.action();
-    w.action();
-    w.action();
-    w.action();
+
+
+
+    parse_input(adventure::get_input(), &p);
+
 
 
 
