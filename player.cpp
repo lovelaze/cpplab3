@@ -4,7 +4,7 @@
 
 using namespace adventure;
 
-Player::Player(std::string name, Env * current_room) : Human(name, current_room, 100, 10, true){
+Player::Player(std::string name, Env * current_room) : Human(name, "player", current_room, 100, 10, true){
 }
 
 Player::~Player() {

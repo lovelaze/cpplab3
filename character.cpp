@@ -34,7 +34,7 @@ void Character::change_room(Env * env) {
     current_room_->enter(this);
 }
 
-void Character::go(Direction dir) {
+void Character::go(int dir) {
     if (current_room_ == nullptr) {
         std::cout << "nullptr current_room_" << std::endl;
     }
@@ -99,8 +99,12 @@ bool Character::alive() {
 
 
 
-void Character::go_to_random_neighbor() {
+int Character::go_to_random_neighbor() {
 
-    go(static_cast<Direction>(current_room_->get_random_valid_direction()));
+    int temp = current_room_->get_random_valid_direction();
+    if(temp >=0){
+        go(temp);
+    }
+    return temp;
 
 }

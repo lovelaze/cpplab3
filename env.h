@@ -45,6 +45,8 @@ namespace adventure {
 
         int get_random_valid_direction();
 
+        Character * find_player();
+
     protected:
         std::string description_;
         std::vector<Env *> neighbors_;

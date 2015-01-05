@@ -1,26 +1,44 @@
 #include <iostream>
 #include "wizard.h"
 #include "common.h"
+#include "env.h"
 
 
 using namespace adventure;
 
-Wizard::Wizard(std::string name, Env * current_room) : Human(name, current_room, 50, 5, true){
+Wizard::Wizard(std::string name, Env * current_room) : Human(name, "wizard", current_room, 50, 5, true){
 }
 
 void Wizard::action() {
 
-    if (health_ <= max_health_/2) {
-        switch(get_rand(0, 1)) {
-            case 0:
 
-                break;
+    int temp = 0;
+    Env * tmp_room = current_room_;
 
-            case 1:
-                std::cout << "1" << std::endl;
-                break;
-        }
+
+    switch(get_rand(0,1)) {
+        case 0:     //move to another room
+            temp = go_to_random_neighbor();
+
+            if(temp>=0){
+                std::cout << name() << " went to " << tmp_room->neighbor(temp)->description() << std::endl;
+            }
+            break;
+
+        case 1:     //fight with player
+            Character * ptr = current_room_->find_player();
+            if (ptr != nullptr) {
+                fight(ptr);
+            } else {
+                std::cout << name() << " tried to fight player but could not find him." << std::endl;
+            }
+            
+            break;
+
     }
+
+
+
 
 }
 

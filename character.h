@@ -14,17 +14,6 @@ namespace adventure {
 
     class Env;
 
-    enum Direction {
-        NORTH,
-        NORTH_EAST,
-        EAST,
-        SOUTH_EAST,
-        SOUTH,
-        SOUTH_WEST,
-        WEST,
-        NORTH_WEST
-    };
-
     class Character {
 
 
@@ -45,7 +34,7 @@ namespace adventure {
         bool alive_;
 
         virtual void action() = 0;
-        void go(Direction dir);
+        void go(int dir);
         virtual void fight(Character * ) = 0;
         bool pick_up(Item *);
         bool drop(Item *);
@@ -59,7 +48,7 @@ namespace adventure {
 
         bool alive();
 
-        void go_to_random_neighbor();
+        int go_to_random_neighbor();
 
     protected:
         std::string name_;

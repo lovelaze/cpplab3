@@ -5,6 +5,7 @@
 #include <algorithm>
 #include "character.h"
 #include "common.h"
+#include <stdexcept>
 
 using namespace adventure;
 
@@ -38,6 +39,7 @@ std::string Env::description() const {
 }
 
 Env * Env::neighbor(int direction) {
+
     return neighbors_[direction];
 }
 
@@ -72,11 +74,15 @@ void Env::leave(Character *c) {
 }
 
 void Env::printCharacters() {
+
+    std::cout << "in room: " << description() << std::endl;
+
     for (int i = 0; i < characters_.size(); ++i) {
         if (characters_[i] != nullptr) {
             std::cout << characters_[i]->name() << std::endl;
         }
     }
+    std::cout << std::endl;
 }
 
 void Env::printItems() {
@@ -98,7 +104,9 @@ void Env::drop(Item * item) {
 }
 
 
-
+/*
+    if i < 0 pls exception
+ */
 int Env::get_random_valid_direction() {
 
 
@@ -107,6 +115,15 @@ int Env::get_random_valid_direction() {
     for (int i = 0; i < neighbors_.size(); ++i) {
         if (neighbors_[i] != nullptr) ++temp;
     }
+
+    //fixa sen!
+
+    if (temp <= 0) {
+        std::cout << "could not find a valid direction" << std::endl;
+        return -1;
+
+    }
+
 
     int n = get_rand(0, temp-1);
 
@@ -117,6 +134,17 @@ int Env::get_random_valid_direction() {
             --n;
         }
     }
+
     return i;
+
+}
+
+
+Character * Env::find_player() {
+    for (int i = 0; i < characters_.size(); ++i)  {
+        if (characters_[i]->type() == "player") return characters_[i];
+    }
+
+    return nullptr;
 
 }
