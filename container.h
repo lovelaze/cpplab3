@@ -21,6 +21,8 @@ namespace adventure {
         bool add(Item *);
         bool remove(Item *);
 
+        Item * find_item(std::string name) const;
+
         std::vector<Item *> items_;
 
 

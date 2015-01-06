@@ -148,3 +148,20 @@ Character * Env::find_player() {
     return nullptr;
 
 }
+
+Character * Env::find_character(std::string name) {
+
+    for (int i = 0; i < characters_.size(); ++i) {
+        if (characters_[i]->name() == name) return characters_[i];
+    }
+    return nullptr;
+}
+
+Item *Env::find_item(std::string name) {
+
+    for (int i = 0; i < items_.size(); ++i) {
+        if (items_[i]->name() == name) return items_[i];
+    }
+
+    return nullptr;
+}

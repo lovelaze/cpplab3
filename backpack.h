@@ -11,6 +11,8 @@ namespace adventure {
         Backpack(std::string name, int weight, int volume, int price, int hold_weight, int hold_volume);
         ~Backpack();
 
+        void print() const;
+
     protected:
     };
 

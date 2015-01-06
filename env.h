@@ -47,6 +47,10 @@ namespace adventure {
 
         Character * find_player();
 
+        Character * find_character(std::string name);
+
+        Item * find_item(std::string name);
+
     protected:
         std::string description_;
         std::vector<Env *> neighbors_;

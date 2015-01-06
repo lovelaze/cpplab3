@@ -76,23 +76,12 @@ bool Character::drop(Item *item) {
         backpack_ = nullptr;
     } else {
         backpack_->remove(item);
+        current_room_->drop(item);
     }
 
 
 }
 
-void Character::print_backpack() const {
-
-    if (!has_backpack()) {
-        std::cout << "no backpack" << std::endl;
-    } else {
-        std::cout << backpack_->name() << ":" << std::endl;
-        for (int i = 0; i < backpack_->items_.size(); ++i) {
-            std::cout  << backpack_->items_[i]->name() << std::endl;
-        }
-    }
-
-}
 
 
 bool Character::alive() {
@@ -109,4 +98,9 @@ int Character::go_to_random_neighbor() {
     }
     return temp;
 
+}
+
+
+Backpack *Character::backpack() {
+    return backpack_;
 }

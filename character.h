@@ -1,7 +1,6 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-
 #include <string>
 #include "item.h"
 #include "container.h"
@@ -44,7 +43,7 @@ namespace adventure {
 
         bool has_backpack() const;
 
-        void print_backpack() const;
+        Backpack * backpack();
 
         bool alive();
 

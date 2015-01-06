@@ -1,3 +1,4 @@
+#include <iostream>
 #include "backpack.h"
 
 using namespace adventure;
@@ -9,4 +10,11 @@ Backpack::Backpack(std::string name, int weight, int volume, int price, int hold
 }
 
 Backpack::~Backpack() {
+}
+
+void Backpack::print() const {
+    for (int i = 0; i < items_.size(); ++i) {
+        std::cout  << items_[i]->name() << " : " << items_[i]->weight() << ", " << items_[i]->volume() << ", " << items_[i]->price() << std::endl;
+    }
+
 }

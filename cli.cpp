@@ -10,7 +10,7 @@
 
 using namespace std;
 
-vector<string> valid_commands = {"go", "directions", "fight", "talk"};
+vector<string> valid_commands = {"go", "take", "drop", "directions", "fight", "talk", "backpack"};
 vector<string> valid_directions = {"north", "east", "south", "west"};
 
 bool adventure::valid_command(std::string cmd) {
@@ -75,6 +75,74 @@ void adventure::parse_input(std::string input, Character * c) {
 
         } else if(cmd == "directions") {
             cout << c->current_room_->directions();
+        } else if(cmd == "fight") {
+            if (tokens.size() == 2) {
+
+                Character * cp = c->current_room_->find_character(tokens[1]);
+
+                if (cp != nullptr) {
+                    c->fight(cp);
+                    cp->fight(c);
+                } else {
+                    cout << "could not find " << tokens[1] << " in this room" << endl;
+                }
+            } else {
+                cout << "not a valid character" << endl;
+            }
+
+        } else if(cmd == "talk") {
+            if (tokens.size() == 2) {
+                Character * cp = c->current_room_->find_character(tokens[1]);
+                if (cp != nullptr) {
+                    c->talk_to(cp);
+                } else {
+                    cout << "could not find " << tokens[1] << " in this room" << endl;
+                }
+            } else {
+                cout << "not a valid character" << endl;
+            }
+
+
+        } else if (cmd == "take") {
+            if (tokens.size() == 2) {
+
+                Item * ip = c->current_room_->find_item(tokens[1]);
+
+                if (ip != nullptr) {
+                    c->pick_up(ip);
+                    cout << c->name() << " picked up " << ip ->name() << endl;
+                } else {
+                    cout << "could not find " << tokens[1] << " in this room" << endl;
+                }
+
+            } else {
+                cout << "invalid item" << endl;
+            }
+
+
+        } else if (cmd == "backpack") {
+            if (c->has_backpack()) {
+                c->backpack()->print();
+            } else {
+                cout << "I have no backpack" << endl;
+            }
+        } else if (cmd == "drop") {
+            if (tokens.size() == 2) {
+                if (c->has_backpack()) {
+
+                    Item * ip = c->backpack()->find_item(tokens[1]);
+
+                    if (ip != nullptr) {
+                        c->backpack()->remove(ip);
+                        cout << c->name() << " dropped " << ip->name() << endl;
+                    } else {
+                        cout << "could not find " << tokens[1] << endl;
+                    }
+                }
+            } else {
+                cout << "invalid item" << endl;
+            }
+
         }
     } else {
         cout << "no such command" << endl;

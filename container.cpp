@@ -56,3 +56,12 @@ bool Container::fits(Item * item) {
 
     return true;
 }
+
+
+Item * Container::find_item(std::string name) const {
+
+    for (int i = 0; i < items_.size(); ++i) {
+        if (items_[i]->name() == name) return items_[i];
+    }
+    return nullptr;
+}

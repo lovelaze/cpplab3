@@ -31,14 +31,19 @@ int main() {
 
     Player p("player", &r1);
    
-    Wizard w("adrian", &r2);
+    Wizard w("adrian", &r1);
+
+    p.pick_up(&backpack);
+    p.pick_up(&sword);
 
 
-    w.action();
-
+    //w.action();
 
 
     parse_input(adventure::get_input(), &p);
+    parse_input(adventure::get_input(), &p);
+
+    r1.printItems();
 
 
 
