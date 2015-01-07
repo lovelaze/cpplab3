@@ -15,6 +15,8 @@ namespace adventure {
 
     bool valid_direction(std::string, std::string);
 
+    void battle(Character *, Character *);
+
 
 
 

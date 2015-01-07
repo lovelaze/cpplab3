@@ -12,6 +12,7 @@ namespace adventure {
         void action();
         void fight(Character * );
         void talk_to(Character *);
+        void die();
 
 
     };

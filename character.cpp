@@ -120,8 +120,15 @@ Backpack *Character::backpack() {
 
 
 void Character::check_kill(Character *c) {
-    alive_ = health_ > 0;
+    c->alive_ = c->health_ > 0;
     if ( !c->alive()) {
         std::cout << name() << " killed " << c->name() << "." << std::endl;
+        die();
+        current_room_->leave(c);
     }
+
+
+
 }
+
+

@@ -26,7 +26,7 @@ std::string Env::directions() const {
 
         if (neighbors_[i] != nullptr) {
 
-            oss << i << " - " << neighbors_[i]->description() << std::endl;
+            oss << neighbors_[i]->description() << " - " << int_to_direction(i) << std::endl;
         }
 
     }

@@ -54,6 +54,8 @@ namespace adventure {
 
         void check_kill(Character *);
 
+        virtual void die() = 0;
+
     protected:
         std::string name_;
         std::string type_;

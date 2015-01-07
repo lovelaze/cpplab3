@@ -4,7 +4,7 @@
 
 using namespace adventure;
 
-Player::Player(std::string name, Env * current_room) : Human(name, "player", current_room, 100, 10, true){
+Player::Player(std::string name, Env * current_room) : Human(name, "player", current_room, 60, 20, true){
 }
 
 Player::~Player() {
@@ -26,9 +26,8 @@ void Player::fight(Character * character) {
         std::cout << name() << " hit " << character->name() << " for " << damage_ << " damage." << " (" << character->health_ << "/" << character->max_health_ << ")" << std::endl;
 
         character->alive_ = character->health_ > 0;
-        if ( !character->alive()) {
-            std::cout << name() << " killed " << character->name() << "." << std::endl;
-        }
+
+        check_kill(character);
 
     }
 }
@@ -39,3 +38,6 @@ void Player::talk_to(Character * character) {
 }
 
 
+void Player::die() {
+    //alive_ = false;
+}

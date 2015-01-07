@@ -60,3 +60,6 @@ void Wizard::talk_to(Character * character) {
 }
 
 
+void Wizard::die() {
+
+}

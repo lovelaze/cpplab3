@@ -16,6 +16,7 @@ class Player : public Human {
         void action();
         void fight(Character * );
         void talk_to(Character *);
+        void die();
 
 
 

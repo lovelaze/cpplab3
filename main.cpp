@@ -5,6 +5,10 @@
 #include "common.h"
 #include "cli.h"
 #include "troll.h"
+#include "unique_storage.hpp"
+#include "game_storage.hpp"
+#include "object.h"
+#include "constants.h"
 
 using namespace std;
 using namespace adventure;
@@ -13,45 +17,29 @@ int main() {
 
     srand(time(0));
 
-    Room r1("r1");
-    Room r2("r2");
-    Room r3("r3");
-    Room r4("r4");
+    Room mainhall("main hall");
+    Room kitchen("kitchen");
+    Room bedroom("bedroom");
+    Room cellar("cellar");
+    Room garden("garden");      //utomhus
+    Room forest("forest");      //utomhus
+    Room balcony("balcony"); //utombus
 
-    r1.addNeighbor(0, &r2).addNeighbor(1, &r3).addNeighbor(2, &r4).addNeighbor(4, &r4);
-    r4.addNeighbor(0, &r1);
-    r2.addNeighbor(0, &r1);
-    r3.addNeighbor(0, &r1);
-
-    Item sword = Item("sword", 1,1,1);
-    Backpack backpack = Backpack("backpack", 10, 50, 5, 100, 500);
-
-    r1.drop(&sword);
-    r1.drop(&backpack);
-
-
+    mainhall.addNeighbor(NORTH, &kitchen).addNeighbor(EAST, &bedroom).addNeighbor(SOUTH, &garden);
+    kitchen.addNeighbor(SOUTH, &mainhall).addNeighbor(NORTH, &cellar);
+    bedroom.addNeighbor(WEST, &mainhall).addNeighbor(EAST, &balcony);
+    cellar.addNeighbor(SOUTH, &kitchen).addNeighbor(EAST, &forest);
+    garden.addNeighbor(NORTH_WEST, &mainhall).addNeighbor(SOUTH_WEST, &forest);
+    forest.addNeighbor(NORTH_EAST, &garden).addNeighbor(WEST, &cellar);
+    balcony.addNeighbor(NORTH_WEST, &bedroom);
 
 
-    Player p("player", &r1);
+    //om trollkarlen droppar sin glaskula i garden/forest måste man kolla ut över balkongen för att se den (och sen kunna gå och hämta den), inomhus hittar man den bara genom att bara i samma rum typ.
+    //undergångs väg från cellar till forest, kanske gömd.
 
-    Wizard w("wonka", &r1);
+    Player p("adrian",&mainhall);
 
-    Troll t("rebar", &r1);
-
-    while (1) parse_input(get_input(), &p);
-
-
-
-
-
-
-
-
-
-
-
-
-
+    cout << p.current_room_->directions() << endl;
 
 
 

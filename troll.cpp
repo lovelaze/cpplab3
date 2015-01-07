@@ -35,3 +35,7 @@ void Troll::fight(Character * character) {
     }
 
 }
+
+void Troll::die() {
+
+}

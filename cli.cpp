@@ -81,8 +81,7 @@ void adventure::parse_input(std::string input, Character * c) {
                 Character * cp = c->current_room_->find_character(tokens[1]);
 
                 if (cp != nullptr) {
-                    c->fight(cp);
-                    cp->fight(c);
+                    battle(c, cp);
                 } else {
                     cout << "could not find " << tokens[1] << " in this room" << endl;
                 }
@@ -161,12 +160,36 @@ void adventure::parse_input(std::string input, Character * c) {
     }
 
 
+}
+
+void adventure::battle(Character * c, Character * cp) {
+    bool done = false;
+
+    cout << c->name() << " engages " << cp->name() << " in brutal, mortal, combat:" << endl;
+    cout << "what do you want to do? (attack, flee)" << endl;
+    while (!done && c->alive()) {
+        string cmd = get_input();
+
+        if (cmd == "attack") {
+            if (c->alive_) {
+                c->fight(cp);
+            } else {
+                done = true;
+            }
+            if (cp->alive()) {
+                cp->fight(c);
+            } else {
+                done = true;
+
+            }
+
+        } else if (cmd == "flee") {
+            cout << c->name() << " fled like a sissy-wimp." << endl;
+            done = true;
+        } else {
+            cout << "invalid command" << endl;
+        }
 
 
-
-
-
-
-
-
+    }
 }
