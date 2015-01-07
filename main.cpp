@@ -4,6 +4,7 @@
 #include "wizard.h"
 #include "common.h"
 #include "cli.h"
+#include "troll.h"
 
 using namespace std;
 using namespace adventure;
@@ -29,21 +30,19 @@ int main() {
     r1.drop(&backpack);
 
 
+
+
     Player p("player", &r1);
-   
-    Wizard w("adrian", &r1);
 
-    p.pick_up(&backpack);
-    p.pick_up(&sword);
+    Wizard w("wonka", &r1);
 
+    Troll t("rebar", &r1);
 
-    //w.action();
+    while (1) parse_input(get_input(), &p);
 
 
-    parse_input(adventure::get_input(), &p);
-    parse_input(adventure::get_input(), &p);
 
-    r1.printItems();
+
 
 
 

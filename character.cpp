@@ -50,19 +50,26 @@ bool Character::has_backpack() const {
 }
 
 bool Character::pick_up(Item *item) {
+
+
+
     if (!has_backpack()) {
 
         if (dynamic_cast<const Backpack *>(item) != 0) {
+
             backpack_ = (Backpack *)item;
             current_room_->pick_up(item);
+            std::cout << name() << " picked up " << item->name() << std::endl;
             return true;
         }
+        std::cout << "i have no backpack" << std::endl;
         return false;
-    }
 
+    }
 
     if(backpack_->add(item)) {
         current_room_->pick_up(item);
+        std::cout << name() << " picked up " << item->name() << std::endl;
     }
 
 
@@ -75,8 +82,14 @@ bool Character::drop(Item *item) {
         current_room_->drop(backpack_);
         backpack_ = nullptr;
     } else {
-        backpack_->remove(item);
-        current_room_->drop(item);
+        if (has_backpack() && backpack()->find_item(item->name()) != nullptr) {
+            backpack_->remove(item);
+            current_room_->drop(item);
+            std::cout << name() << " dropped " << name() << std::endl;
+        } else {
+            std::cout << name() << " does not have " << item->name() << std::endl;
+        }
+
     }
 
 
@@ -103,4 +116,12 @@ int Character::go_to_random_neighbor() {
 
 Backpack *Character::backpack() {
     return backpack_;
+}
+
+
+void Character::check_kill(Character *c) {
+    alive_ = health_ > 0;
+    if ( !c->alive()) {
+        std::cout << name() << " killed " << c->name() << "." << std::endl;
+    }
 }

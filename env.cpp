@@ -75,17 +75,19 @@ void Env::leave(Character *c) {
 
 void Env::printCharacters() {
 
-    std::cout << "in room: " << description() << std::endl;
+    std::cout << "Characters in room " << description() << ":" << std::endl;
 
     for (int i = 0; i < characters_.size(); ++i) {
         if (characters_[i] != nullptr) {
-            std::cout << characters_[i]->name() << std::endl;
+            std::cout << characters_[i]->name() << " : " << characters_[i]->type() << std::endl;
         }
     }
-    std::cout << std::endl;
 }
 
 void Env::printItems() {
+
+    std::cout << "Items in room " << description() <<  ":" << std::endl;
+
     for (int i = 0; i < items_.size(); ++i) {
         if (items_[i] != nullptr) {
             std::cout << items_[i]->name() << std::endl;

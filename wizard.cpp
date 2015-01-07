@@ -50,10 +50,7 @@ void Wizard::fight(Character * character) {
         character->health_ -= character->max_health_/5 + damage_;
         std::cout << name() << " blasts " << character->name() << " for " << character->max_health_/5+damage_ << " damage." << " (" << character->health_ << "/" << character->max_health_ << ")" << std::endl;
 
-        character->alive_ = character->health_ > 0;
-        if ( !character->alive()) {
-            std::cout << name() << " killed " << character->name() << "." << std::endl;
-        }
+        check_kill(character);
 
     }
 }

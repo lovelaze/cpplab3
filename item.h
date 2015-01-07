@@ -24,6 +24,8 @@ namespace adventure {
         int weight_;
         int volume_;
         int price_;
+        int damage_bonus;
+        int health_bonus;
 
     };
 }

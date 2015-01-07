@@ -10,7 +10,7 @@
 
 using namespace std;
 
-vector<string> valid_commands = {"go", "take", "drop", "directions", "fight", "talk", "backpack"};
+vector<string> valid_commands = {"go", "take", "drop", "directions", "fight", "talk", "backpack", "items", "chars"};
 vector<string> valid_directions = {"north", "east", "south", "west"};
 
 bool adventure::valid_command(std::string cmd) {
@@ -110,7 +110,7 @@ void adventure::parse_input(std::string input, Character * c) {
 
                 if (ip != nullptr) {
                     c->pick_up(ip);
-                    cout << c->name() << " picked up " << ip ->name() << endl;
+
                 } else {
                     cout << "could not find " << tokens[1] << " in this room" << endl;
                 }
@@ -133,8 +133,7 @@ void adventure::parse_input(std::string input, Character * c) {
                     Item * ip = c->backpack()->find_item(tokens[1]);
 
                     if (ip != nullptr) {
-                        c->backpack()->remove(ip);
-                        cout << c->name() << " dropped " << ip->name() << endl;
+                        c->drop(ip);
                     } else {
                         cout << "could not find " << tokens[1] << endl;
                     }
@@ -143,6 +142,19 @@ void adventure::parse_input(std::string input, Character * c) {
                 cout << "invalid item" << endl;
             }
 
+        } else if (cmd == "items") {
+            if (tokens.size() == 1) {
+                c->current_room_->printItems();
+            } else {
+                cout << "invalid command" << endl;
+            }
+
+        } else if (cmd == "chars") {
+            if (tokens.size() == 1) {
+                c->current_room_->printCharacters();
+            } else {
+                cout << "invalid command" << endl;
+            }
         }
     } else {
         cout << "no such command" << endl;

@@ -32,11 +32,14 @@ namespace adventure {
         int damage_;
         bool alive_;
 
+        int bonus_damage = 0;
+        int bonus_health = 0;
+
         virtual void action() = 0;
-        void go(int dir);
+        virtual void go(int dir);
         virtual void fight(Character * ) = 0;
-        bool pick_up(Item *);
-        bool drop(Item *);
+        virtual bool pick_up(Item *);
+        virtual bool drop(Item *);
         virtual void talk_to(Character *) = 0;
 
         void change_room(Env *);
@@ -48,6 +51,8 @@ namespace adventure {
         bool alive();
 
         int go_to_random_neighbor();
+
+        void check_kill(Character *);
 
     protected:
         std::string name_;
