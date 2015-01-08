@@ -14,6 +14,8 @@ namespace adventure {
 
     std::string int_to_direction(int);
 
+    bool chance(int);
+
 
 
 }

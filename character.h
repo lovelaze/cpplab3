@@ -29,10 +29,10 @@ namespace adventure {
 
         virtual void action() = 0;
         virtual void go(int dir);
-        virtual void fight(Character * ) = 0;
+        virtual void fight(Character * );
         virtual void pick_up(Item *);
         virtual void drop(Item *);
-        virtual void talk_to(Character *) = 0;
+        virtual void talk_to(Character *);
 
         void change_room(Env *);
         bool has_backpack() const;
@@ -40,14 +40,16 @@ namespace adventure {
         bool & alive();
         int go_to_random_neighbor();
         void check_kill(Character *);
-        virtual void die() = 0;
+        virtual void on_death();
 
         int & health() {return health_;};
         int & max_health() {return max_health_;};
-        int & damage() {return damage_;};
+        int damage() {return damage_+bonus_damage_;};
         int & bonus_damage() {return bonus_damage_;};
         int & bonus_health() {return bonus_health_;};
         Env * current_room() {return current_room_;};
+
+        int add_health(int);
 
     protected:
 

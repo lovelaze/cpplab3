@@ -5,12 +5,13 @@
 #include <sstream>
 #include <algorithm>
 #include "common.h"
+#include "food.h"
 
 
 
 using namespace std;
 
-vector<string> valid_commands = {"go", "take", "drop", "dir", "fight", "talk", "backpack", "items", "chars"};
+vector<string> valid_commands = {"go", "take", "drop", "dir", "fight", "talk", "backpack", "items", "chars", "stats", "eat", "help"};
 vector<string> valid_directions = {"north", "east", "south", "west"};
 
 bool adventure::valid_command(std::string cmd) {
@@ -159,6 +160,37 @@ void adventure::parse_input(std::string input, Character * c) {
             } else {
                 cout << "invalid command" << endl;
             }
+        } else if (cmd == "stats") {
+            if (tokens.size() == 1) {
+                cout << "Health: " << c->health() << "/" << c->max_health() << ", damage: " << c->damage() << endl;
+            } else {
+                cout << "invalid command" << endl;
+            }
+        } else if (cmd == "help") {
+
+            if (tokens.size() == 1) {
+                cout << "Available commands:" << endl;
+                for (std::string & s : valid_commands) {
+                    cout << s << " ";
+                }
+                cout << endl;
+            } else {
+                cout << "invalid command" << endl;
+            }
+        } else if (cmd == "eat") {
+            if (tokens.size() == 2) {
+
+                Food * fp = dynamic_cast<Food *>(c->backpack()->find_item(tokens[1]));
+
+                if (fp != nullptr) {
+                    fp->eat(c);
+                } else {
+                    cout << "could not eat " << tokens[1] << endl;
+                }
+
+            } else {
+                cout << "What do you want to eat?" << endl;
+            }
         }
     } else {
         cout << "no such command" << endl;
@@ -178,6 +210,12 @@ void adventure::battle(Character * c, Character * cp) {
         if (cmd == "attack") {
             if (c->alive()) {
                 c->fight(cp);
+                if(cp->health() < 20)
+                   if (chance(30)) {
+                        done = true;
+                        cout << cp->name() << " managed to escape." << endl;
+                        cp->go_to_random_neighbor();
+                   }
             } else {
                 done = true;
             }

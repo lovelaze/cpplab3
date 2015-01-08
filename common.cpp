@@ -1,4 +1,5 @@
 #include "common.h"
+#include <iostream>
 
 
 int adventure::get_rand(int lower, int higher) {
@@ -49,6 +50,12 @@ std::string adventure::int_to_direction(int x) {
 
     }
     return "error";
+
+}
+
+bool adventure::chance(int x) {
+    int randnr = rand() %  (100 - 1) ;
+    return x >= randnr;
 
 }
 

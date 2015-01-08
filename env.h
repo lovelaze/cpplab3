@@ -19,7 +19,7 @@ namespace adventure {
 
     public:
         Env();
-        Env(std::string desc);
+        Env(std::string desc, bool outdoor);
         virtual ~Env();
 
         std::string directions() const;
@@ -31,6 +31,9 @@ namespace adventure {
         void leave(Character *);
         Item * pick_up(Item *);
         void drop(Item *);
+
+        virtual void on_enter(Character *);
+        virtual void climate_event(Character *) = 0;
 
         Env * addNeighbor(int i, Env *);
         void removeNeighbor(int i);
@@ -47,11 +50,15 @@ namespace adventure {
 
         Item * find_item(std::string name);
 
+        void add_char(Character *);
+
     protected:
         std::string description_;
         std::vector<Env *> neighbors_;
         std::vector<Item *> items_;
         std::vector<Character *> characters_;
+
+        bool outdoor_;
 
     };
 

@@ -16,9 +16,7 @@ class Player : public Human {
         void action();
         void fight(Character * );
         void talk_to(Character *);
-        void die();
-
-        bool has_crystal_ball() const;
+        bool has_sapphire() const;
 
 
 

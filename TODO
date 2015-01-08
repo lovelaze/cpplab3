@@ -1,10 +1,15 @@
-- fixa rum så att några rum är indoors och några är outdoors
-    speciellt med rum: action() som t.ex ändrar vädret
 - fixa klart priest-klasen
-    speciellt med priest: kan heala spelaren
+    //kan ha mana variabel!
 
-- damage & health på items
-    som gör mer skada eller healer spelaren
-- svårare monster/wizards att döda
+- bla wizard har en action-case som printar saker även fast det passar till spelet.
+  fixa så att de har chans att göra flera saker samtidigt, beroende på chans()
 
-- se ut över garden/forest när man är på balkongen
+- flytta vissa metoder så att de ligger i rätt klass inom arvet, talk to i human (exempelvis) osv
+
+- allt readonly är const
+
+-när vi äter droppar item så skrivs för mycket
+
+-fight mellan varelser ska inte ske (se cellar)
+
+-bör checkkill finnas i cellar entry metoden, wizard ska ju inte kunna slåss med apier

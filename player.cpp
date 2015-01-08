@@ -1,5 +1,6 @@
 #include <iostream>
 #include "player.h"
+#include "cli.h"
 
 
 using namespace adventure;
@@ -13,9 +14,7 @@ Player::~Player() {
 
 
 void Player::action() {
-
-
-
+    parse_input(get_input(), this);
 }
 
 void Player::fight(Character * character) {
@@ -39,13 +38,9 @@ void Player::talk_to(Character * character) {
 }
 
 
-void Player::die() {
-    //alive_ = false;
-}
-
-bool Player::has_crystal_ball() const {
+bool Player::has_sapphire() const {
     if (has_backpack()) {
-        return backpack()->exists("kristallkula");
+        return backpack()->exists("sapphire");
     }
     return false;
 }

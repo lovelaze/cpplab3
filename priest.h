@@ -14,7 +14,6 @@ namespace adventure {
         void action();
         void fight(Character *character);
         void talk_to(Character *character);
-        void die();
     };
 }
 

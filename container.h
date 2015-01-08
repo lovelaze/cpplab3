@@ -9,7 +9,7 @@ namespace adventure {
     class Container : public Item {
     public:
         Container();
-        Container(std::string name, int weight, int volume, int price, int hold_weight, int hold_volume);
+        Container(std::string name, int weight, int volume, int hold_weight, int hold_volume);
         virtual ~Container();
 
         int hold_weight() const;

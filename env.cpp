@@ -12,7 +12,7 @@ using namespace adventure;
 Env::Env() {
 }
 
-Env::Env(std::string desc) : description_(desc), neighbors_(std::vector<Env *>(8)) {
+Env::Env(std::string desc, bool outdoor) : description_(desc), neighbors_(std::vector<Env *>(8)), outdoor_(outdoor) {
 }
 
 Env::~Env() {
@@ -56,7 +56,11 @@ void Env::removeNeighbor(int i){
 void Env::enter(Character * c) {
     if(std::find(characters_.begin(), characters_.end(), c) == characters_.end())
     {
-        characters_.push_back(c);
+        add_char(c);
+        if (c->type() == "player") {
+            climate_event(c);    
+        }
+        on_enter(c);
     }
 }
 
@@ -166,4 +170,12 @@ Item *Env::find_item(std::string name) {
     }
 
     return nullptr;
+}
+
+void Env::on_enter(Character * c) {
+
+}
+
+void Env::add_char(Character * c) {
+    characters_.push_back(c);
 }

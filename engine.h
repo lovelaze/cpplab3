@@ -31,6 +31,8 @@ namespace adventure {
 
 		void run();
 
+		void update_chars();
+
 
 	private:
 

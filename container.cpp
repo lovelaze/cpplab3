@@ -7,7 +7,7 @@ using namespace adventure;
 Container::Container() {
 }
 
-Container::Container(std::string name, int weight, int volume, int price, int hold_weight, int hold_volume) : Item(name, weight, volume , price), hold_weight_(hold_weight), hold_volume_(hold_volume), items_weight_(0), items_volume_(0) {
+Container::Container(std::string name, int weight, int volume, int hold_weight, int hold_volume) : Item(name, weight, volume), hold_weight_(hold_weight), hold_volume_(hold_volume), items_weight_(0), items_volume_(0) {
 }
 
 Container::~Container() {

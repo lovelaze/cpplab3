@@ -8,8 +8,7 @@ Troll::Troll(std::string name, Env *current_room) : Monster(name, "troll", curre
 }
 
 void Troll::talk_to(Character * c) {
-    std::cout << name() << " is ANGRY!" << std::endl;
-    fight(c);
+    std::cout << name() << " he is ANGRY!" << std::endl;
 }
 
 void Troll::action() {
@@ -22,9 +21,9 @@ void Troll::fight(Character * character) {
     } else {
 
 
-        int rand = get_rand(0, 3);
+        
         int dmg_mult = 1;
-        if (rand == 0) {
+        if (chance(50)) {
             dmg_mult = 2;
         }
 
@@ -33,9 +32,5 @@ void Troll::fight(Character * character) {
 
         check_kill(character);
     }
-
-}
-
-void Troll::die() {
 
 }
