@@ -28,8 +28,8 @@ void Troll::fight(Character * character) {
             dmg_mult = 2;
         }
 
-        character->health_ -= damage_*dmg_mult;
-        std::cout << name() << " hits " << character->name() << " for " << damage_*dmg_mult << " damage." << " (" << character->health_ << "/" << character->max_health_ << ")" << std::endl;
+        character->health() -= damage()*dmg_mult;
+        std::cout << name() << " hits " << character->name() << " for " << damage()*dmg_mult << " damage." << " (" << character->health() << "/" << character->max_health() << ")" << std::endl;
 
         check_kill(character);
     }

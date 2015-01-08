@@ -12,7 +12,7 @@ Character::Character() {
 Character::~Character() {
 }
 
-Character::Character(std::string name, std::string type, Env *current_room, int health, int damage, bool alive) : name_(name), type_(type), current_room_(current_room), health_(health), damage_(damage), alive_(alive) {
+Character::Character(std::string name, std::string type, Env *current_room, int health, int damage, bool alive) :  current_room_(current_room), name_(name), type_(type), health_(health), damage_(damage), alive_(alive) {
     max_health_ = health_;
     current_room->enter(this);
 }
@@ -49,7 +49,7 @@ bool Character::has_backpack() const {
     return backpack_ != nullptr;
 }
 
-bool Character::pick_up(Item *item) {
+void Character::pick_up(Item *item) {
 
 
 
@@ -60,10 +60,8 @@ bool Character::pick_up(Item *item) {
             backpack_ = (Backpack *)item;
             current_room_->pick_up(item);
             std::cout << name() << " picked up " << item->name() << std::endl;
-            return true;
         }
         std::cout << "i have no backpack" << std::endl;
-        return false;
 
     }
 
@@ -75,14 +73,14 @@ bool Character::pick_up(Item *item) {
     }
 
 
-    return true;
 }
 
-bool Character::drop(Item *item) {
+void Character::drop(Item *item) {
 
     if (item == backpack_) {
         current_room_->drop(backpack_);
         backpack_ = nullptr;
+
     } else {
         if (has_backpack() && backpack()->find_item(item->name()) != nullptr) {
             backpack_->remove(item);
@@ -99,7 +97,7 @@ bool Character::drop(Item *item) {
 
 
 
-bool Character::alive() {
+bool & Character::alive() {
     return alive_;
 }
 
@@ -116,7 +114,7 @@ int Character::go_to_random_neighbor() {
 }
 
 
-Backpack *Character::backpack() {
+Backpack *Character::backpack() const {
     return backpack_;
 }
 

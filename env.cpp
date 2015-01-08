@@ -73,7 +73,7 @@ void Env::leave(Character *c) {
 
 }
 
-void Env::printCharacters() {
+void Env::printCharacters() const {
 
     std::cout << "Characters in room " << description() << ":" << std::endl;
 
@@ -84,7 +84,7 @@ void Env::printCharacters() {
     }
 }
 
-void Env::printItems() {
+void Env::printItems() const {
 
     std::cout << "Items in room " << description() <<  ":" << std::endl;
 
@@ -109,7 +109,7 @@ void Env::drop(Item * item) {
 /*
     if i < 0 pls exception
  */
-int Env::get_random_valid_direction() {
+int Env::get_random_valid_direction() const {
 
 
 

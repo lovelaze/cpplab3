@@ -18,7 +18,7 @@ class Player : public Human {
         void talk_to(Character *);
         void die();
 
-        bool has_crystal_ball();
+        bool has_crystal_ball() const;
 
 
 

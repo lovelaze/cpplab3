@@ -1,6 +1,6 @@
 TARGET = game
-CXX= g++
-CXXFLAGS = -std=gnu++11 -g -Wall 
+CXX= clang++-3.5
+CXXFLAGS = -std=gnu++11 -g -Wall -pedantic 
 
 .PHONY: default all clean
 
@@ -16,7 +16,7 @@ HEADERS = $(wildcard *.h)
 .PRECIOUS: $(TARGET) $(OBJECTS)
 
 $(TARGET): $(OBJECTS)
-	$(CXX) $(OBJECTS) -o $@
+	$(CXX) $(OBJECTS) $(CXXFLAGS) -o $@
 
 clean:
 	-rm -f *.o

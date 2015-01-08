@@ -18,7 +18,7 @@ void Wizard::action() {
             break;
 
         case 1:     //fight with player
-            Character * ptr = current_room_->find_player();
+            Character * ptr = current_room()->find_player();
             if (ptr != nullptr) {
                 fight(ptr);
             } else {
@@ -41,8 +41,8 @@ void Wizard::fight(Character * character) {
     if (!character->alive()) {
         std::cout << "Could not fight. " << character->name() << " is dead." << std::endl;
     } else {
-        character->health_ -= character->max_health_/5 + damage_;
-        std::cout << name() << " blasts " << character->name() << " for " << character->max_health_/5+damage_ << " damage." << " (" << character->health_ << "/" << character->max_health_ << ")" << std::endl;
+        character->health() -= character->max_health()/5 + damage_;
+        std::cout << name() << " blasts " << character->name() << " for " << character->max_health()/5+damage() << " damage." << " (" << character->health() << "/" << character->max_health() << ")" << std::endl;
 
         check_kill(character);
 

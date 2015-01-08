@@ -11,9 +11,6 @@ namespace adventure {
         Room(std::string desc);
         virtual ~Room();
 
-    protected:
-
-
     };
 
 

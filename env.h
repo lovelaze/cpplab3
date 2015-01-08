@@ -36,10 +36,10 @@ namespace adventure {
         void removeNeighbor(int i);
 
 
-        void printItems();
-        void printCharacters();
+        void printItems() const;
+        void printCharacters() const;
 
-        int get_random_valid_direction();
+        int get_random_valid_direction() const;
 
         Character * find_player();
 

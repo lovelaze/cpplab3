@@ -24,6 +24,7 @@ int adventure::direction_to_int(std::string in1, std::string in2) {
     } else if (in1 =="north" && in2=="west") {
         return 7;
     }
+    return -1;
 }
 
 std::string adventure::int_to_direction(int x) {

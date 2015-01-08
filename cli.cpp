@@ -74,11 +74,11 @@ void adventure::parse_input(std::string input, Character * c) {
 
 
         } else if(cmd == "dir") {
-            cout << c->current_room_->directions();
+            cout << c->current_room()->directions();
         } else if(cmd == "fight") {
             if (tokens.size() == 2) {
 
-                Character * cp = c->current_room_->find_character(tokens[1]);
+                Character * cp = c->current_room()->find_character(tokens[1]);
 
                 if (cp != nullptr) {
                     if (c != cp) {
@@ -96,7 +96,7 @@ void adventure::parse_input(std::string input, Character * c) {
 
         } else if(cmd == "talk") {
             if (tokens.size() == 2) {
-                Character * cp = c->current_room_->find_character(tokens[1]);
+                Character * cp = c->current_room()->find_character(tokens[1]);
                 if (cp != nullptr) {
                     c->talk_to(cp);
                 } else {
@@ -110,7 +110,7 @@ void adventure::parse_input(std::string input, Character * c) {
         } else if (cmd == "take") {
             if (tokens.size() == 2) {
 
-                Item * ip = c->current_room_->find_item(tokens[1]);
+                Item * ip = c->current_room()->find_item(tokens[1]);
 
                 if (ip != nullptr) {
                     c->pick_up(ip);
@@ -148,14 +148,14 @@ void adventure::parse_input(std::string input, Character * c) {
 
         } else if (cmd == "items") {
             if (tokens.size() == 1) {
-                c->current_room_->printItems();
+                c->current_room()->printItems();
             } else {
                 cout << "invalid command" << endl;
             }
 
         } else if (cmd == "chars") {
             if (tokens.size() == 1) {
-                c->current_room_->printCharacters();
+                c->current_room()->printCharacters();
             } else {
                 cout << "invalid command" << endl;
             }
@@ -176,7 +176,7 @@ void adventure::battle(Character * c, Character * cp) {
         string cmd = get_input();
 
         if (cmd == "attack") {
-            if (c->alive_) {
+            if (c->alive()) {
                 c->fight(cp);
             } else {
                 done = true;
