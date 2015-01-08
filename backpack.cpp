@@ -13,7 +13,8 @@ Backpack::~Backpack() {
 }
 
 void Backpack::print() const {
-    for (int i = 0; i < items_.size(); ++i) {
+	std::cout << name() << " (" << items_weight() << "/" << hold_weight() << ")" << std::endl;
+    for (std::size_t i = 0; i < items_.size(); ++i) {
         std::cout  << items_[i]->name() << " : " << items_[i]->weight() << ", " << items_[i]->volume() << ", " << items_[i]->price() << std::endl;
     }
 

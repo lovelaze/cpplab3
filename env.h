@@ -25,8 +25,6 @@ namespace adventure {
         std::string directions() const;
         std::string description() const;
 
-
-
         Env * neighbor(int direction);
 
         void enter(Character *);
@@ -34,9 +32,7 @@ namespace adventure {
         Item * pick_up(Item *);
         void drop(Item *);
 
-
-
-        Env & addNeighbor(int i, Env *);
+        Env * addNeighbor(int i, Env *);
         void removeNeighbor(int i);
 
 

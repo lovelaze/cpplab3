@@ -2,6 +2,7 @@
 #include "wizard.h"
 #include "common.h"
 #include "env.h"
+#include "engine.h"
 
 
 using namespace adventure;
@@ -11,16 +12,9 @@ Wizard::Wizard(std::string name, Env * current_room) : Human(name, "wizard", cur
 
 void Wizard::action() {
 
-
-    int temp = 0;
-    Env * tmp_room = current_room_;
-
-
     switch(get_rand(0,1)) {
         case 0:     //move to another room
-            temp = go_to_random_neighbor();
-
-
+            go_to_random_neighbor();
             break;
 
         case 1:     //fight with player
@@ -56,10 +50,14 @@ void Wizard::fight(Character * character) {
 }
 void Wizard::talk_to(Character * character) {
 
-    std::cout << "Hello, " << character->name() << ". I am a " << type() << " and I like to fish." << std::endl;
+    std::cout << "Hello, " << character->name() << ". I am a " << type() << " and I like to fish. Also I dropped my ball for you." << std::endl;
+
+    Item * i = new Item("kristallkula", 20, 5, 1);
+    current_room_->drop(i);
+    Engine::get_instance()->items().push_back(i);
 }
 
 
 void Wizard::die() {
-
+    
 }

@@ -70,6 +70,8 @@ bool Character::pick_up(Item *item) {
     if(backpack_->add(item)) {
         current_room_->pick_up(item);
         std::cout << name() << " picked up " << item->name() << std::endl;
+    } else {
+        std::cout << name() << " can't pick up " << item->name() << std::endl;
     }
 
 

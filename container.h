@@ -15,13 +15,17 @@ namespace adventure {
         int hold_weight() const;
         int hold_volume() const;
 
-        int items_weight = 0;
-        int items_volume = 0;
+        int items_weight() const;
+        int items_volume() const;
+
+        
 
         bool add(Item *);
         bool remove(Item *);
 
         Item * find_item(std::string name) const;
+
+        bool exists(std::string name) const;
 
         std::vector<Item *> items_;
 
@@ -29,6 +33,8 @@ namespace adventure {
     protected:
         int hold_weight_;
         int hold_volume_;
+        int items_weight_;
+        int items_volume_;
 
 
     private:

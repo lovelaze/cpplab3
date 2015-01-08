@@ -22,7 +22,7 @@ std::string Env::directions() const {
     std::ostringstream oss;
 
 
-    for (int i = 0; i < neighbors_.size(); ++i) {
+    for (std::size_t i = 0; i < neighbors_.size(); ++i) {
 
         if (neighbors_[i] != nullptr) {
 
@@ -43,9 +43,9 @@ Env * Env::neighbor(int direction) {
     return neighbors_[direction];
 }
 
-Env & Env::addNeighbor(int i, Env * env) {
+Env * Env::addNeighbor(int i, Env * env) {
     neighbors_[i] = env;
-    return *this;
+    return this;
 }
 
 void Env::removeNeighbor(int i){
@@ -77,7 +77,7 @@ void Env::printCharacters() {
 
     std::cout << "Characters in room " << description() << ":" << std::endl;
 
-    for (int i = 0; i < characters_.size(); ++i) {
+    for (std::size_t i = 0; i < characters_.size(); ++i) {
         if (characters_[i] != nullptr) {
             std::cout << characters_[i]->name() << " : " << characters_[i]->type() << std::endl;
         }
@@ -88,7 +88,7 @@ void Env::printItems() {
 
     std::cout << "Items in room " << description() <<  ":" << std::endl;
 
-    for (int i = 0; i < items_.size(); ++i) {
+    for (std::size_t i = 0; i < items_.size(); ++i) {
         if (items_[i] != nullptr) {
             std::cout << items_[i]->name() << std::endl;
         }
@@ -114,7 +114,7 @@ int Env::get_random_valid_direction() {
 
 
     int temp = 0;
-    for (int i = 0; i < neighbors_.size(); ++i) {
+    for (std::size_t i = 0; i < neighbors_.size(); ++i) {
         if (neighbors_[i] != nullptr) ++temp;
     }
 
@@ -143,7 +143,7 @@ int Env::get_random_valid_direction() {
 
 
 Character * Env::find_player() {
-    for (int i = 0; i < characters_.size(); ++i)  {
+    for (std::size_t i = 0; i < characters_.size(); ++i)  {
         if (characters_[i]->type() == "player") return characters_[i];
     }
 
@@ -153,7 +153,7 @@ Character * Env::find_player() {
 
 Character * Env::find_character(std::string name) {
 
-    for (int i = 0; i < characters_.size(); ++i) {
+    for (std::size_t i = 0; i < characters_.size(); ++i) {
         if (characters_[i]->name() == name) return characters_[i];
     }
     return nullptr;
@@ -161,7 +161,7 @@ Character * Env::find_character(std::string name) {
 
 Item *Env::find_item(std::string name) {
 
-    for (int i = 0; i < items_.size(); ++i) {
+    for (std::size_t i = 0; i < items_.size(); ++i) {
         if (items_[i]->name() == name) return items_[i];
     }
 

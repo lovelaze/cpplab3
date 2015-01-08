@@ -10,7 +10,7 @@
 
 using namespace std;
 
-vector<string> valid_commands = {"go", "take", "drop", "directions", "fight", "talk", "backpack", "items", "chars"};
+vector<string> valid_commands = {"go", "take", "drop", "dir", "fight", "talk", "backpack", "items", "chars"};
 vector<string> valid_directions = {"north", "east", "south", "west"};
 
 bool adventure::valid_command(std::string cmd) {
@@ -73,7 +73,7 @@ void adventure::parse_input(std::string input, Character * c) {
             }
 
 
-        } else if(cmd == "directions") {
+        } else if(cmd == "dir") {
             cout << c->current_room_->directions();
         } else if(cmd == "fight") {
             if (tokens.size() == 2) {
@@ -81,7 +81,12 @@ void adventure::parse_input(std::string input, Character * c) {
                 Character * cp = c->current_room_->find_character(tokens[1]);
 
                 if (cp != nullptr) {
-                    battle(c, cp);
+                    if (c != cp) {
+                        battle(c, cp);    
+                    } else {
+                        cout << "can't fight yourself" << endl;
+                    }
+                    
                 } else {
                     cout << "could not find " << tokens[1] << " in this room" << endl;
                 }

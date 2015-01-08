@@ -19,8 +19,9 @@ void Player::action() {
 }
 
 void Player::fight(Character * character) {
+
     if (!character->alive()) {
-        std::cout << "Could not fight. " << character->name() << " is dead." << std::endl;
+    std::cout << "Could not fight. " << character->name() << " is dead." << std::endl;
     } else {
         character->health_ -= damage_;
         std::cout << name() << " hit " << character->name() << " for " << damage_ << " damage." << " (" << character->health_ << "/" << character->max_health_ << ")" << std::endl;
@@ -29,7 +30,7 @@ void Player::fight(Character * character) {
 
         check_kill(character);
 
-    }
+    }    
 }
 
 void Player::talk_to(Character * character) {
@@ -40,4 +41,11 @@ void Player::talk_to(Character * character) {
 
 void Player::die() {
     //alive_ = false;
+}
+
+bool Player::has_crystal_ball() {
+    if (has_backpack()) {
+        return backpack()->exists("kristallkula");
+    }
+    return false;
 }

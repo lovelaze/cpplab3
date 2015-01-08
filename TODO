@@ -1,0 +1,10 @@
+- fixa rum så att några rum är indoors och några är outdoors
+    speciellt med rum: action() som t.ex ändrar vädret
+- fixa klart priest-klasen
+    speciellt med priest: kan heala spelaren
+
+- damage & health på items
+    som gör mer skada eller healer spelaren
+- svårare monster/wizards att döda
+
+- se ut över garden/forest när man är på balkongen
