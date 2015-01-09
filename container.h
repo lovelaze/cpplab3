@@ -38,7 +38,7 @@ namespace adventure {
 
 
     private:
-        bool fits(Item *);
+        bool fits(Item *) const;
     };
 
 

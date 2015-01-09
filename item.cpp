@@ -34,7 +34,7 @@ void Item::on_drop(Character * c) {
 	
 }
 
-std::string Item::to_string() {
+std::string Item::to_string() const {
 	std::ostringstream o;
 	o << name_ << " : " << weight_ << " (weight) " << volume_ << " (volume) ";
 	return o.str();

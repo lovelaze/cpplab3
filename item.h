@@ -22,7 +22,7 @@ namespace adventure {
         virtual void on_pick_up(Character *);
         virtual void on_drop(Character *);
 
-        virtual std::string to_string();
+        virtual std::string to_string() const;
 
 
     protected:

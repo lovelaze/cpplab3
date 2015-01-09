@@ -57,9 +57,7 @@ void Env::enter(Character * c) {
     if(std::find(characters_.begin(), characters_.end(), c) == characters_.end())
     {
         add_char(c);
-        if (c->type() == "player") {
-            climate_event(c);    
-        }
+        climate_event(c);    
         on_enter(c);
     }
 }
@@ -109,10 +107,6 @@ void Env::drop(Item * item) {
     items_.push_back(item);
 }
 
-
-/*
-    if i < 0 pls exception
- */
 int Env::get_random_valid_direction() const {
 
 
@@ -121,8 +115,6 @@ int Env::get_random_valid_direction() const {
     for (std::size_t i = 0; i < neighbors_.size(); ++i) {
         if (neighbors_[i] != nullptr) ++temp;
     }
-
-    //fixa sen!
 
     if (temp <= 0) {
         std::cout << "could not find a valid direction" << std::endl;
@@ -146,7 +138,7 @@ int Env::get_random_valid_direction() const {
 }
 
 
-Character * Env::find_player() {
+Character * Env::find_player() const{
     for (std::size_t i = 0; i < characters_.size(); ++i)  {
         if (characters_[i]->type() == "player") return characters_[i];
     }
@@ -155,7 +147,7 @@ Character * Env::find_player() {
 
 }
 
-Character * Env::find_character(std::string name) {
+Character * Env::find_character(std::string name) const {
 
     for (std::size_t i = 0; i < characters_.size(); ++i) {
         if (characters_[i]->name() == name) return characters_[i];
@@ -163,7 +155,7 @@ Character * Env::find_character(std::string name) {
     return nullptr;
 }
 
-Item *Env::find_item(std::string name) {
+Item *Env::find_item(std::string name) const {
 
     for (std::size_t i = 0; i < items_.size(); ++i) {
         if (items_[i]->name() == name) return items_[i];

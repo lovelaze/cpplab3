@@ -15,8 +15,10 @@ Indoor::~Indoor() {
 }
 
 void Indoor::climate_event(Character * c) {
-	if (chance(10)) {
-		if (c->health() < c->max_health()) std::cout << "The warmth is so cozy: " << c->add_health(10) << " health." << std::endl;
-
+	if (c->is_player()) {
+		if (chance(10)) {
+			if (c->health() < c->max_health()) std::cout << "The warmth is so cozy: " << c->add_health(10) << " health." << std::endl;
+		}
 	}
+	
 }

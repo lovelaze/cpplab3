@@ -20,11 +20,15 @@ namespace adventure {
     class Cellar : public Indoor {
     	using Indoor::Indoor;
     	void on_enter(Character * c) {
-    		Character * trollp = find_character("Trihx");
-    		if (trollp != nullptr && c->type() == "player") {
-    			c->talk_to(trollp);
-    			trollp->fight(c);  
-    		}
+
+            if (c->is_player()) {
+                Character * trollp = find_character("Trihx");
+                if (trollp != nullptr) {
+                    c->talk_to(trollp);
+                    trollp->fight(c);  
+                }
+            }
+    		
     	}
     };
 }

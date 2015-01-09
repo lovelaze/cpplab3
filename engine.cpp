@@ -14,11 +14,6 @@
 
 using namespace adventure;
 
-Engine::Engine() {
-
-}
-
-
 Engine::~Engine() {
 	
 	clear_vector(envs_);
@@ -35,8 +30,8 @@ void Engine::clear_vector(std::vector<T *> & v) {
 }
 
 Engine * Engine::get_instance() {
-	static Engine * instance = new Engine();
-	return instance;
+	static Engine instance;
+	return & instance;
 }
 
 void Engine::init_game() {
@@ -56,10 +51,10 @@ void Engine::init_game() {
 	Indoor * mainhall = new Indoor("main hall");
 	Indoor * kitchen = new Indoor("kitchen");
 	Indoor * bedroom = new Indoor("bedroom");
-	Indoor * cellar = new Cellar("cellar");
+	Cellar * cellar = new Cellar("cellar");
 	Outdoor * garden = new Outdoor("garden");      //utomhus
 	Outdoor * forest = new Outdoor("forest");      //utomhus
-	Outdoor * balcony = new Outdoor("balcony");    //utombus
+	Balcony * balcony = new Balcony("balcony");    //utombus
 
 	mainhall->addNeighbor(NORTH, kitchen)->addNeighbor(EAST, bedroom)->addNeighbor(SOUTH, garden);
 	kitchen->addNeighbor(SOUTH, mainhall)->addNeighbor(NORTH, cellar);
@@ -123,7 +118,6 @@ void Engine::run() {
 	
 	
 }
-
 
 std::vector<Env *> & Engine::envs() {
 	return envs_;

@@ -53,7 +53,7 @@ bool Container::remove(Item * item) {
     return false;
 }
 
-bool Container::fits(Item * item) {
+bool Container::fits(Item * item) const {
     if (items_volume() + item->volume() > hold_volume()) {
         return false;
     }

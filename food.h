@@ -17,7 +17,7 @@ namespace adventure {
 
 		void eat(Character *);
 
-        std::string to_string();
+        std::string to_string() const;
 
 	private:
 		int health_bonus_;

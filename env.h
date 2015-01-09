@@ -44,11 +44,11 @@ namespace adventure {
 
         int get_random_valid_direction() const;
 
-        Character * find_player();
+        Character * find_player() const;
 
-        Character * find_character(std::string name);
+        Character * find_character(std::string name) const;
 
-        Item * find_item(std::string name);
+        Item * find_item(std::string name) const;
 
         void add_char(Character *);
 

@@ -22,7 +22,7 @@ int Food::health_bonus() const {
 	return health_bonus_;
 }
 
-std::string Food::to_string() {
+std::string Food::to_string() const {
 	std::ostringstream o;
 	o << name_ << " : " << weight_ << " (weight) " << volume_ << " (volume) " << health_bonus_ << " (health)";
 	return o.str();

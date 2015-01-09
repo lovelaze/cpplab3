@@ -7,7 +7,7 @@
 
 using namespace adventure;
 
-Wizard::Wizard(std::string name, Env * current_room) : Human(name, "wizard", current_room, 50, 5, true){
+Wizard::Wizard(std::string name, Env * current_room) : Human(name, "wizard", current_room, 70, 5, true){
 }
 
 void Wizard::action() {

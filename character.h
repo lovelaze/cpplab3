@@ -51,6 +51,8 @@ namespace adventure {
 
         int add_health(int);
 
+        bool is_player() const;
+
     protected:
 
         Env * current_room_;

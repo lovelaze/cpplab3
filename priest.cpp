@@ -32,7 +32,6 @@ void Priest::action() {
 		
 	} else if(chance(25)) {
 		Food * i = new Food("mushroom", 5, 5, 5);
-		
 
 		int ran = get_rand(0, Engine::get_instance()->envs().size()-1);
 		Env * e = Engine::get_instance()->envs()[ran];

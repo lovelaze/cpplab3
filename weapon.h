@@ -18,7 +18,7 @@ namespace adventure {
 		void on_pick_up(Character *);
         void on_drop(Character *);
 
-        std::string to_string();
+        std::string to_string() const;
 
 	private:
 		int damage_bonus_;

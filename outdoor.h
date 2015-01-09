@@ -3,6 +3,9 @@
 
 #include "env.h"
 #include <string>
+#include <iostream>
+#include "character.h"
+#include "engine.h"
 
 namespace adventure {
     class Outdoor : public Env {
@@ -15,10 +18,12 @@ namespace adventure {
         
     };
 
-    class Garden : public Outdoor {
+    class Balcony : public Outdoor {
     	using Outdoor::Outdoor;
     	void on_enter(Character * c) {
-    		
+    		if(c->is_player()) {
+                std::cout << "I can see the garden and a priest from here" << std::endl;
+            }
     	}
     };
 }

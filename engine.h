@@ -17,7 +17,6 @@ namespace adventure {
 
 	public:
 
-		Engine();
 		virtual ~Engine();
 
 		static Engine * get_instance();
@@ -28,12 +27,12 @@ namespace adventure {
 		std::vector<Item *> & items();
 
 		void init_game();
-
 		void run();
-
 		void update_chars();
-
 		void printIntro() const;
+
+		// ADD
+		// REMOVE
 
 
 	private:

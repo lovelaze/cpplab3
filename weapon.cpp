@@ -28,7 +28,7 @@ void Weapon::on_drop(Character * c) {
 	c->bonus_damage() -= damage_bonus();
 }
 
-std::string Weapon::to_string() {
+std::string Weapon::to_string() const {
 	std::ostringstream o;
 	o << name_ << " : " << weight_ << " (weight) " << volume_ << " (volume) " << damage_bonus_ << " (damage)";
 	return o.str();

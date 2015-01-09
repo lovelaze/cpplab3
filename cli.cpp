@@ -11,8 +11,8 @@
 
 using namespace std;
 
-vector<string> valid_commands = {"go", "take", "drop", "map", "fight", "talk", "backpack", "items", "chars", "stats", "eat", "help"};
-vector<string> valid_directions = {"north", "east", "south", "west"};
+const vector<string> valid_commands = {"go", "take", "drop", "map", "fight", "talk", "backpack", "items", "chars", "stats", "eat", "help"};
+const vector<string> valid_directions = {"north", "east", "south", "west"};
 
 bool adventure::valid_command(std::string cmd) {
     return find(valid_commands.begin(), valid_commands.end(), cmd) != valid_commands.end();
@@ -170,7 +170,7 @@ void adventure::parse_input(std::string input, Character * c) {
 
             if (tokens.size() == 1) {
                 cout << "Available commands:" << endl;
-                for (std::string & s : valid_commands) {
+                for (const std::string & s : valid_commands) {
                     cout << s << " ";
                 }
                 cout << endl;

@@ -160,3 +160,7 @@ int Character::add_health(int x) {
 void Character::on_death() {
 
 }
+
+bool Character::is_player() const {
+    return type() == "player";
+}

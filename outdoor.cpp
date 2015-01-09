@@ -16,10 +16,13 @@ Outdoor::~Outdoor() {
 }
 
 void Outdoor::climate_event(Character * c) {
-
-	if (chance(40)) {
+	if (c->is_player()) {
+		if (chance(40)) {
 		std::cout << "The cold weather is freezing you to bits: -5 health" << std::endl;
 		c->health() -= 5;
+		}
 	}
+
+	
 	
 }
