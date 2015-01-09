@@ -18,7 +18,7 @@ namespace adventure {
 	public:
 
 		Engine();
-		~Engine();
+		virtual ~Engine();
 
 		static Engine * get_instance();
 
@@ -32,6 +32,8 @@ namespace adventure {
 		void run();
 
 		void update_chars();
+
+		void printIntro() const;
 
 
 	private:

@@ -11,7 +11,7 @@ class Player : public Human {
 
     public:
         Player(std::string name, Env * current_room);
-        ~Player();
+        virtual  ~Player();
 
         void action();
         void fight(Character * );

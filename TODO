@@ -1,15 +1,9 @@
-- fixa klart priest-klasen
-    //kan ha mana variabel!
 
 - bla wizard har en action-case som printar saker även fast det passar till spelet.
   fixa så att de har chans att göra flera saker samtidigt, beroende på chans()
 
-- flytta vissa metoder så att de ligger i rätt klass inom arvet, talk to i human (exempelvis) osv
+- allt read-only är const
 
-- allt readonly är const
+- minska hur ofta galotrix går kanske
 
--när vi äter droppar item så skrivs för mycket
-
--fight mellan varelser ska inte ske (se cellar)
-
--bör checkkill finnas i cellar entry metoden, wizard ska ju inte kunna slåss med apier
+-ändra hur mycket man har i hp /damage så att det är balanserat

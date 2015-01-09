@@ -42,6 +42,7 @@ void Character::go(int dir) {
 
     std::cout << name() << " went from " << current_room_->description() << " to " << current_room_->neighbor(dir)->description() << std::endl;
     change_room(current_room_->neighbor(dir));
+    
 
 }
 
@@ -87,7 +88,7 @@ void Character::drop(Item *item) {
             backpack_->remove(item);
             current_room_->drop(item);
             item->on_drop(this);
-            std::cout << name() << " dropped " << name() << std::endl;
+            std::cout << name() << " dropped " << item->name() << std::endl;
         } else {
             std::cout << name() << " does not have " << item->name() << std::endl;
         }

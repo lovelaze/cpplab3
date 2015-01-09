@@ -4,7 +4,15 @@
 
 using namespace adventure;
 
+Troll::Troll() {
+
+}
+
 Troll::Troll(std::string name, Env *current_room) : Monster(name, "troll", current_room, 100, 15, true){
+}
+
+Troll::~Troll() {
+    
 }
 
 void Troll::talk_to(Character * c) {
@@ -12,6 +20,19 @@ void Troll::talk_to(Character * c) {
 }
 
 void Troll::action() {
+    
+
+    if(health() < 15){
+        add_health(10);
+        std::cout << name() << " is sleeping." << std::endl;
+    } else if(chance(30)) {
+        Item * ip = current_room()->find_item("mushroom");
+        if(ip != nullptr){
+            current_room_->pick_up(ip);
+            std::cout << name() << " SMASH MUSHROOM" << std::endl;
+        }
+    }
+    
 }
 
 void Troll::fight(Character * character) {

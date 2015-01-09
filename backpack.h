@@ -9,7 +9,7 @@ namespace adventure {
     public:
         Backpack();
         Backpack(std::string name, int weight, int volume, int hold_weight, int hold_volume);
-        ~Backpack();
+        virtual  ~Backpack();
 
         void print() const;
 

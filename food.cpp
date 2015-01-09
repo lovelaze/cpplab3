@@ -30,6 +30,6 @@ std::string Food::to_string() {
 
 void Food::eat(Character * c) {
     std::cout << c->name() << " ate " << name() << " and was healed for " << c->add_health(health_bonus_) << " health" << std::endl;
-    c->drop(this);
-    c->current_room()->pick_up(this);;
+    c->backpack()->remove(this);
+    
 }

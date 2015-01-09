@@ -10,7 +10,7 @@ namespace adventure {
     public:
         Human();
         Human(std::string name, std::string type, Env * current_room, int health, int damage, bool alive);
-        ~Human();
+        virtual ~Human();
 
     };
 }

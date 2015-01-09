@@ -9,11 +9,19 @@ namespace adventure {
 
 
     public:
+    	Priest();
         Priest(std::string name, Env * current_room);
+        virtual ~Priest();
 
         void action();
         void fight(Character *character);
         void talk_to(Character *character);
+
+    private:
+
+    	int max_mana_;
+    	int mana_;
+    	
     };
 }
 

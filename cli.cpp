@@ -11,7 +11,7 @@
 
 using namespace std;
 
-vector<string> valid_commands = {"go", "take", "drop", "dir", "fight", "talk", "backpack", "items", "chars", "stats", "eat", "help"};
+vector<string> valid_commands = {"go", "take", "drop", "map", "fight", "talk", "backpack", "items", "chars", "stats", "eat", "help"};
 vector<string> valid_directions = {"north", "east", "south", "west"};
 
 bool adventure::valid_command(std::string cmd) {
@@ -74,7 +74,7 @@ void adventure::parse_input(std::string input, Character * c) {
             }
 
 
-        } else if(cmd == "dir") {
+        } else if(cmd == "map") {
             cout << c->current_room()->directions();
         } else if(cmd == "fight") {
             if (tokens.size() == 2) {
@@ -210,11 +210,13 @@ void adventure::battle(Character * c, Character * cp) {
         if (cmd == "attack") {
             if (c->alive()) {
                 c->fight(cp);
-                if(cp->health() < 20)
+                if(cp->health() < 20 && cp->alive())
                    if (chance(30)) {
                         done = true;
-                        cout << cp->name() << " managed to escape." << endl;
+                        cout << cp->name() << " managed to escape. ";
                         cp->go_to_random_neighbor();
+                        continue;
+
                    }
             } else {
                 done = true;

@@ -12,25 +12,16 @@ Wizard::Wizard(std::string name, Env * current_room) : Human(name, "wizard", cur
 
 void Wizard::action() {
 
-    switch(get_rand(0,1)) {
-       case 0:     //move to another room
-            go_to_random_neighbor();
-            break;
-
-        case 1:     //fight with player
-            Character * ptr = current_room()->find_player();
-            if (ptr != nullptr) {
-                fight(ptr);
-            } else {
-                std::cout << name() << " tried to fight player but could not find him." << std::endl;
-            }
-            
-            break;
-
+    if (chance(30)) {
+        go_to_random_neighbor();
+    } else if(chance(25)) {
+        Character * ptr = current_room()->find_player();
+        if (ptr != nullptr) {
+            fight(ptr);
+        } else {
+            std::cout << name() << " tried to fight player but could not find him." << std::endl;
+        }
     }
-
-
-
 
 }
 
@@ -55,7 +46,12 @@ void Wizard::talk_to(Character * character) {
 
 
 void Wizard::on_death() {
+    drop_sapphire();
+}
+
+void Wizard::drop_sapphire() {
     Item * i = new Item("sapphire", 20, 5);
     current_room_->drop(i);
+    std::cout << name() << " dropped an item on the ground" << std::endl;
     Engine::get_instance()->items().push_back(i);
 }

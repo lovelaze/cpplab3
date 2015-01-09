@@ -3,7 +3,7 @@
 
 
 int adventure::get_rand(int lower, int higher) {
-    return rand() %  (higher - lower+1) + lower ;
+    return (int) rand() % (higher - lower+1) + lower ;
 }
 
 int adventure::direction_to_int(std::string in1, std::string in2) {

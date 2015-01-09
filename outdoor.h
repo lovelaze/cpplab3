@@ -10,7 +10,7 @@ namespace adventure {
     public:
         Outdoor();
         Outdoor(std::string desc);
-        ~Outdoor();
+        virtual ~Outdoor();
         void climate_event(Character*);
         
     };

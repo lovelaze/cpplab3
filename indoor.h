@@ -11,7 +11,7 @@ namespace adventure {
     public:
         Indoor();
         Indoor(std::string desc);
-        ~Indoor();
+        virtual ~Indoor();
 
         void climate_event(Character*);
 

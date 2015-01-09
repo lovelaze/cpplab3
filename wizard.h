@@ -16,6 +16,8 @@ namespace adventure {
         void on_death();
 
 
+    private:
+    	void drop_sapphire();
     };
 
 }
