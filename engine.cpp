@@ -11,6 +11,7 @@
 #include "priest.h"
 #include "weapon.h"
 #include "food.h"
+#include <algorithm>
 
 using namespace adventure;
 
@@ -33,6 +34,27 @@ Engine * Engine::get_instance() {
 	static Engine instance;
 	return & instance;
 }
+
+void Engine::add_item(Item * item) {
+	items_.push_back(item);
+}
+
+
+bool Engine::remove_item(Item * item) {
+	Engine * e = get_instance();
+
+	auto ptr = std::find(e->items_.begin(), e->items_.end(), item);
+
+	if (ptr != e->items_.end()) {
+		delete *ptr;
+		e->items_.erase(ptr);
+		return true;
+	}
+
+	return false;	
+
+}
+
 
 void Engine::init_game() {
 	srand(time(0));

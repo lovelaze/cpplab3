@@ -26,6 +26,9 @@ namespace adventure {
 		std::vector<Character *> & chars();
 		std::vector<Item *> & items();
 
+		void add_item(Item *);
+		static bool remove_item(Item *);
+
 		void init_game();
 		void run();
 		void update_chars();
