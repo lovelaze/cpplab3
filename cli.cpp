@@ -10,15 +10,29 @@
 
 
 using namespace std;
+using namespace adventure;
 
 const vector<string> valid_commands = {"go", "take", "drop", "map", "fight", "talk", "backpack", "items", "chars", "stats", "eat", "help"};
 const vector<string> valid_directions = {"north", "east", "south", "west"};
 
-bool adventure::valid_command(std::string cmd) {
+Cli::Cli() {
+
+}
+
+Cli::~Cli() {
+
+}
+
+void Cli::init() {
+
+    inner_map.insert(std::make_pair("go", &Character::go));
+}
+
+bool Cli::valid_command(std::string cmd) {
     return find(valid_commands.begin(), valid_commands.end(), cmd) != valid_commands.end();
 }
 
-bool adventure::valid_direction(std::string input1, std::string input2) {
+bool Cli::valid_direction(std::string input1, std::string input2) {
     bool first = find(valid_directions.begin(), valid_directions.end(), input1) != valid_directions.end();
 
     bool second;
@@ -31,7 +45,7 @@ bool adventure::valid_direction(std::string input1, std::string input2) {
     return first && second;
 }
 
-std::string adventure::get_input() {
+std::string Cli::get_input() {
 
     std::string s;
     cout << "> ";
@@ -40,7 +54,7 @@ std::string adventure::get_input() {
 
 }
 
-void adventure::parse_input(std::string input, Character * c) {
+void Cli::parse_input(std::string input, Character * c) {
 
     string buf;
     stringstream ss(input);
@@ -199,7 +213,7 @@ void adventure::parse_input(std::string input, Character * c) {
 
 }
 
-void adventure::battle(Character * c, Character * cp) {
+void Cli::battle(Character * c, Character * cp) {
     bool done = false;
 
     cout << c->name() << " engages " << cp->name() << " in brutal, mortal, combat:" << endl;

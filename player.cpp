@@ -14,7 +14,9 @@ Player::~Player() {
 
 
 void Player::action() {
-    parse_input(get_input(), this);
+
+
+    cli.parse_input(cli.get_input(), this);
 }
 
 void Player::fight(Character * character) {

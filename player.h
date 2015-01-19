@@ -4,6 +4,7 @@
 #include "item.h"
 #include "human.h"
 #include "env.h"
+#include "cli.h"
 
 
 namespace adventure {
@@ -19,7 +20,8 @@ class Player : public Human {
         bool has_sapphire() const;
 
 
-
+    private:
+    	Cli cli;
     };
 }
 
