@@ -12,8 +12,25 @@
 #include "weapon.h"
 #include "food.h"
 #include <algorithm>
+#include <fstream>
+#include <sstream>
+#include <iterator>
+#include "common.h"
 
 using namespace adventure;
+
+Engine::Engine() {
+	loads["INDOOR"] = &Engine::new_indoor; 
+	loads["OUTDOOR"] = &Engine::new_outdoor;
+	loads["CELLAR"] = &Engine::new_cellar;
+	loads["BALCONY"] = &Engine::new_balcony;
+	loads["ITEM"] = &Engine::new_item;
+	loads["FOOD"] = &Engine::new_food;
+	loads["WEAPON"] = &Engine::new_weapon;
+	loads["TROLL"] = &Engine::new_troll;
+	loads["WIZARD"] = &Engine::new_wizard;
+	loads["PRIEST"] = &Engine::new_priest;
+}
 
 Engine::~Engine() {
 	
@@ -55,6 +72,23 @@ bool Engine::remove_item(Item * item) {
 
 }
 
+void Engine::load_file(std::string file) {
+
+	std::ifstream input(file);
+	std::string line;
+	std::vector<std::string> v;
+
+	while(std::getline(input,line)) {
+
+		split(line,':',v);
+
+		(this->*(this->loads[v[0]])) (v);
+
+	    v.clear();
+	}
+        
+}
+
 
 void Engine::init_game() {
 	srand(time(0));
@@ -74,9 +108,9 @@ void Engine::init_game() {
 	Indoor * kitchen = new Indoor("kitchen");
 	Indoor * bedroom = new Indoor("bedroom");
 	Cellar * cellar = new Cellar("cellar");
-	Outdoor * garden = new Outdoor("garden");      //utomhus
-	Outdoor * forest = new Outdoor("forest");      //utomhus
-	Balcony * balcony = new Balcony("balcony");    //utombus
+	Outdoor * garden = new Outdoor("garden");
+	Outdoor * forest = new Outdoor("forest");
+	Balcony * balcony = new Balcony("balcony");
 
 	mainhall->addNeighbor(NORTH, kitchen)->addNeighbor(EAST, bedroom)->addNeighbor(SOUTH, garden);
 	kitchen->addNeighbor(SOUTH, mainhall)->addNeighbor(NORTH, cellar);
@@ -120,6 +154,9 @@ void Engine::init_game() {
 }
 
 void Engine::run() {
+
+	load_file("loadfile");
+
     //skriv story här
 	printIntro();
 

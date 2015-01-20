@@ -1,0 +1,4 @@
+INDOOR:Main hall:NORTH,Garden:EAST,Toilet
+OUTDOOR:Garden:SOUTH,Main hall
+TROLL:Guupa:Kitchen
+FOOD:apple:2:1:15:Garden

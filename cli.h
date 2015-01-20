@@ -44,7 +44,6 @@ namespace adventure {
 		void stats(std::vector<std::string> &, Character *);
 		void eat(std::vector<std::string> &, Character *);
 		void talk(std::vector<std::string> &, Character *);
-        // YOU CAN NOT SEE WHAT IS ABOVE
 
 
 

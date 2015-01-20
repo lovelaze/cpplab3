@@ -17,6 +17,7 @@ namespace adventure {
     bool chance(int);
 
 
+    void split(const std::string & s, char c, std::vector<std::string> & v);
 
 }
 

@@ -1,12 +1,10 @@
 #include "cli.h"
 #include "character.h"
-#include "env.h"
 #include <iostream>
 #include <sstream>
 #include <algorithm>
 #include "common.h"
 #include "food.h"
-#include "cli_help.cpp"
 
 
 using namespace std;
@@ -31,7 +29,7 @@ Cli::Cli() {
 }
 
 Cli::~Cli() {
-    // Deconstructing stuff fredrik style
+
 }
 
 
