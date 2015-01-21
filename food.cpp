@@ -32,6 +32,5 @@ std::string Food::to_string() const {
 void Food::eat(Character * c) {
     std::cout << c->name() << " ate " << name() << " and was healed for " << c->add_health(health_bonus_) << " health" << std::endl;
     c->backpack()->remove(this);
-    Engine::remove_item(this);
-    
+    Engine::get_instance()->remove_item(this);;
 }

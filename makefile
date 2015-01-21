@@ -1,5 +1,5 @@
 TARGET = game
-CXX= clang++-3.5
+CXX= g++
 CXXFLAGS = -std=gnu++0x -g -Wall -pedantic 
 
 .PHONY: default all clean

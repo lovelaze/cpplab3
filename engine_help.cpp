@@ -1,5 +1,6 @@
 #include "engine.h"
 #include <iostream>
+#include "indoor.h"
 
 using namespace std;
 
@@ -7,6 +8,7 @@ namespace adventure {
 
 	std::vector<std::string> & Engine::new_indoor(std::vector<std::string> & v) {	
 		std::cout << "indoor" << std::endl;
+		Engine::get_instance()->add_env(new Indoor(v[0]));
 		return v;
 	}
 

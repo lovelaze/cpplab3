@@ -56,20 +56,63 @@ void Engine::add_item(Item * item) {
 	items_.push_back(item);
 }
 
+void Engine::add_char(Character * c) {
+	chars_.push_back(c);
+}
+
+void Engine::add_env(Env * env) {
+	envs_.push_back(env);
+}
+
+
 
 bool Engine::remove_item(Item * item) {
-	Engine * e = get_instance();
+	auto ptr = std::find(items_.begin(), items_.end(), item);
 
-	auto ptr = std::find(e->items_.begin(), e->items_.end(), item);
-
-	if (ptr != e->items_.end()) {
+	if (ptr != items_.end()) {
 		delete *ptr;
-		e->items_.erase(ptr);
+		items_.erase(ptr);
 		return true;
 	}
 
 	return false;	
 
+}
+
+bool Engine::remove_char(Character * c) {
+	auto ptr = std::find(chars_.begin(), chars_.end(), c);
+
+	if (ptr != chars_.end()) {
+		delete *ptr;
+		chars_.erase(ptr);
+		return true;
+	}
+
+	return false;	
+
+}
+
+bool Engine::remove_env(Env * env) {
+	auto ptr = std::find(envs_.begin(), envs_.end(), env);
+
+	if (ptr != envs_.end()) {
+		delete *ptr;
+		envs_.erase(ptr);
+		return true;
+	}
+
+	return false;	
+
+}
+
+Env * Engine::find_env(std::string env) {
+
+	for (auto it = envs_.begin(); it != envs_.end(); ++it) {
+		
+	}
+
+
+	return nullptr;
 }
 
 void Engine::load_file(std::string file) {

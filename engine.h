@@ -28,7 +28,15 @@ namespace adventure {
 		std::vector<Item *> & items();
 
 		void add_item(Item *);
-		static bool remove_item(Item *);
+		void add_char(Character *);
+		void add_env(Env *);
+
+		bool remove_item(Item *);
+		bool remove_char(Character *);
+		bool remove_env(Env *);
+
+		Env * find_env(std::string);
+
 
 		void init_game();
 		void run();
