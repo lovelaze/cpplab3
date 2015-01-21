@@ -1,4 +1,27 @@
-INDOOR:Main hall:NORTH,Garden:EAST,Toilet
-OUTDOOR:Garden:SOUTH,Main hall
-TROLL:Guupa:Kitchen
-FOOD:apple:2:1:15:Garden
+INDOOR:main hall
+INDOOR:kitchen
+INDOOR:bedroom
+CELLAR:cellar
+OUTDOOR:garden
+OUTDOOR:forest
+BALCONY:balcony
+CONNECT:main hall:north,cellar:east,bedroom:south,garden
+CONNECT:kitchen:south,main hall:north,cellar
+CONNECT:bedroom:west,mainhall:east,balcony
+CONNECT:cellar:south,kitchen:east,forest
+CONNECT:garden:north,main hall:south west,forest
+CONNECT:forest:north east,garden:west,cellar
+CONNECT:balcony:north west,bedroom
+BACKPACK:pengapungen:1:1:100:100:main hall
+ITEM:poop:20:5:garden
+ITEM:poop:20:5:garden
+ITEM:megastone:1000:1000:garden
+WEAPON:excalibur:25:1:15:garden
+FOOD:chicken:2:1:20:kitchen
+FOOD:apple:2:1:15:balcony
+FOOD:sapphire:2:1:15:main hall
+TROLL:Guupa:kitchen
+TROLL:Trihx:cellar
+TROLL:Ghrar:balcony
+PRIEST:Velen:garden
+WIZARD:Galotrix:forest

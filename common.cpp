@@ -1,6 +1,7 @@
 #include "common.h"
 #include <iostream>
-
+#include <string>
+#include <vector>
 
 int adventure::get_rand(int lower, int higher) {
     return (int) rand() % (higher - lower+1) + lower ;
@@ -8,6 +9,41 @@ int adventure::get_rand(int lower, int higher) {
 
 int adventure::direction_to_int(std::string in1, std::string in2) {
     
+    if (in1=="north" && in2 =="") {
+        return 0;
+    } else if (in1=="north" && in2 =="east") {
+        return 1;
+    } else if (in1=="east" && in2 =="") {
+        return 2;
+    } else if (in1=="south" && in2== "east" ) {
+        return 3;
+    } else if (in1=="south" && in2=="" ) {
+        return 4;
+    } else if (in1 =="south" && in2=="west") {
+        return 5;
+    } else if (in1 =="west" && in2=="") {
+        return 6;
+    } else if (in1 =="north" && in2=="west") {
+        return 7;
+    }
+    return -1;
+}
+
+int adventure::direction_to_int(std::string s) {
+    std::vector<std::string> v;
+    split(s, ' ', v);
+
+    if (v.size() == 0) {
+        v.push_back(s);
+    }
+    
+    std::string in1 = v[0];
+    std::string in2 = "";
+
+    if (v.size() >= 2) {
+        in2 = v[1];
+    }
+
     if (in1=="north" && in2 =="") {
         return 0;
     } else if (in1=="north" && in2 =="east") {

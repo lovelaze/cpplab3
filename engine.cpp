@@ -27,9 +27,11 @@ Engine::Engine() {
 	loads["ITEM"] = &Engine::new_item;
 	loads["FOOD"] = &Engine::new_food;
 	loads["WEAPON"] = &Engine::new_weapon;
+	loads["BACKPACK"] = &Engine::new_backpack;
 	loads["TROLL"] = &Engine::new_troll;
 	loads["WIZARD"] = &Engine::new_wizard;
 	loads["PRIEST"] = &Engine::new_priest;
+	loads["CONNECT"] = &Engine::connect_envs;
 }
 
 Engine::~Engine() {
@@ -137,6 +139,12 @@ void Engine::load_file(std::string file) {
 void Engine::init_game() {
 	srand(time(0));
 
+	load_file("loadfile");
+
+	player = new Player("Adrian the almighty god of godness", Engine::get_instance()->find_env("main hall"));
+	chars_.push_back(player);
+
+	/*
 	auto spawnItem = [=](Item * i,Env * env) {
 		env->drop(i);
 		items_.push_back(i);
@@ -165,8 +173,7 @@ void Engine::init_game() {
 	balcony->addNeighbor(NORTH_WEST, bedroom);
 
 	// CHARS
-	player = new Player("Adrian the almighty god of godness", mainhall);
-	chars_.push_back(player);
+	
 
     // ITEMS
     spawnItem(new Backpack("rugsack", 10, 100, 100, 500), mainhall);
@@ -193,13 +200,11 @@ void Engine::init_game() {
 	envs_.push_back(garden);
 	envs_.push_back(forest);
 	envs_.push_back(balcony);
-
+	*/
 	
 }
 
 void Engine::run() {
-
-	load_file("loadfile");
 
     //skriv story här
 	printIntro();

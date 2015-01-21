@@ -17,7 +17,7 @@ namespace adventure {
 
 	public:
 
-		typedef std::vector<std::string> &(Engine::*load_func)(std::vector<std::string> &);
+		typedef void(Engine::*load_func)(std::vector<std::string> &);
 		
 		Engine();
 		virtual ~Engine();
@@ -59,17 +59,19 @@ namespace adventure {
 		std::map<std::string, load_func> loads;
 
 		/***** function ptrs ****/
-		std::vector<std::string> & new_indoor(std::vector<std::string> &);
-		std::vector<std::string> & new_outdoor(std::vector<std::string> &);
-		std::vector<std::string> & new_cellar(std::vector<std::string> &);
-		std::vector<std::string> & new_balcony(std::vector<std::string> &);
-		std::vector<std::string> & new_item(std::vector<std::string> &);
-		std::vector<std::string> & new_food(std::vector<std::string> &);
-		std::vector<std::string> & new_weapon(std::vector<std::string> &);
-		std::vector<std::string> & new_troll(std::vector<std::string> &);
-		std::vector<std::string> & new_wizard(std::vector<std::string> &);
-		std::vector<std::string> & new_priest(std::vector<std::string> &);
-
+		void new_indoor(std::vector<std::string> &);
+		void new_outdoor(std::vector<std::string> &);
+		void new_cellar(std::vector<std::string> &);
+		void new_balcony(std::vector<std::string> &);
+		void new_item(std::vector<std::string> &);
+		void new_food(std::vector<std::string> &);
+		void new_weapon(std::vector<std::string> &);
+		void new_backpack(std::vector<std::string> &);
+		void new_troll(std::vector<std::string> &);
+		void new_wizard(std::vector<std::string> &);
+		void new_priest(std::vector<std::string> &);
+		void new_player(std::vector<std::string> &);
+		void connect_envs(std::vector<std::string> &);
 	};
 }
 

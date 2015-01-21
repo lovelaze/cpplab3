@@ -21,7 +21,7 @@ Cli::Cli() {
     commands["map"] = &Cli::map;
     commands["fight"] = &Cli::fight;
     commands["items"] = &Cli::items;
-    commands["characters"] = &Cli::characters;
+    commands["chars"] = &Cli::characters;
     commands["stats"] = &Cli::stats;
     commands["eat"] = &Cli::eat;
     commands["talk"] = &Cli::talk;

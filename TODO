@@ -1,9 +1,7 @@
+ta bort prints i funktionpekar-funktionerna
 
-- bla wizard har en action-case som printar saker även fast det passar till spelet.
-  fixa så att de har chans att göra flera saker samtidigt, beroende på chans()
+hitta på någonstans där vi kan använda ---> lambda
 
-- allt read-only är const
+player ska skapas genom fil
 
-- minska hur ofta galotrix går kanske
-
--ändra hur mycket man har i hp /damage så att det är balanserat
+spara allt på fil (ska liv på monster resetas)
