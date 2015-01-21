@@ -106,9 +106,10 @@ bool Engine::remove_env(Env * env) {
 }
 
 Env * Engine::find_env(std::string env) {
-
 	for (auto it = envs_.begin(); it != envs_.end(); ++it) {
-		
+		if ((*it)->description() == env) {
+			return *it;
+		}
 	}
 
 
