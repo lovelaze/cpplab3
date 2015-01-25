@@ -12,6 +12,7 @@ class Player : public Human {
 
     public:
         Player(std::string name, Env * current_room);
+        Player(std::string name, Env * current_room, int health);
         virtual  ~Player();
 
         void action();
@@ -19,6 +20,7 @@ class Player : public Human {
         void talk_to(Character *);
         bool has_sapphire() const;
 
+        virtual std::string class_name() const;
 
     private:
     	Cli cli;

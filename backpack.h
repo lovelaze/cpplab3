@@ -13,7 +13,8 @@ namespace adventure {
 
         void print() const;
 
-    protected:
+    	virtual std::string class_name() const;
+
     };
 
 }

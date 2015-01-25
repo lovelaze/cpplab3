@@ -8,6 +8,9 @@ using namespace adventure;
 Player::Player(std::string name, Env * current_room) : Human(name, "player", current_room, 60, 20, true){
 }
 
+Player::Player(std::string name, Env * current_room, int health) : Human(name, "player", current_room, health, 20, true){
+}
+
 Player::~Player() {
 
 }
@@ -45,4 +48,8 @@ bool Player::has_sapphire() const {
         return backpack()->exists("sapphire");
     }
     return false;
+}
+
+std::string Player::class_name() const {
+    return "Player";
 }

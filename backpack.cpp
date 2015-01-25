@@ -19,3 +19,7 @@ void Backpack::print() const {
     }
 
 }
+
+std::string Backpack::class_name() const {
+	return "Backpack";
+}

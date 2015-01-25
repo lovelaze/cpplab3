@@ -28,7 +28,7 @@ namespace adventure {
 
 		std::map<std::string, help_func> commands;
 
-		const std::vector<std::string> valid_commands = {"go", "take", "drop", "map", "fight", "talk", "backpack", "items", "chars", "stats", "eat", "help"};
+		const std::vector<std::string> valid_commands = {"go", "take", "drop", "map", "fight", "talk", "backpack", "items", "chars", "stats", "eat", "help", "save", "load"};
 		const std::vector<std::string> valid_directions = {"north", "east", "south", "west"};
 
         // function pointer functions
@@ -44,6 +44,8 @@ namespace adventure {
 		void stats(std::vector<std::string> &, Character *);
 		void eat(std::vector<std::string> &, Character *);
 		void talk(std::vector<std::string> &, Character *);
+		void save(std::vector<std::string> &, Character *);
+		void load(std::vector<std::string> &, Character *);
 
 
 

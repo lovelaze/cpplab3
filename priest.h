@@ -17,6 +17,8 @@ namespace adventure {
         void fight(Character *character);
         void talk_to(Character *character);
 
+        virtual std::string class_name() const;
+
     private:
 
     	int max_mana_;

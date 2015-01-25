@@ -1,7 +1,8 @@
-ta bort prints i funktionpekar-funktionerna
+ta bort prints i funktionpekar-funktionerna (överallt annars också)
 
 hitta på någonstans där vi kan använda ---> lambda
 
 player ska skapas genom fil
 
 spara allt på fil (ska liv på monster resetas)
+får segmentation fault när man ska loada spel, kan vara fel på funktionpekare/reset

@@ -7,6 +7,7 @@
 #include <iostream>
 #include "food.h"
 #include "env.h"
+#include "engine.h"
 
 
 using namespace std;
@@ -199,6 +200,30 @@ namespace adventure {
                 cout << s << " ";
             }
             cout << endl;
+        } else {
+            cout << "invalid command" << endl;
+        }
+    }
+
+    //==========================================================================
+
+    void Cli::save(std::vector<std::string> & tokens, Character * c) {
+        if (tokens.size() == 2) {
+            Engine::get_instance()->save_file(tokens[1]);
+
+        } else {
+            cout << "invalid command" << endl;
+        }
+    }
+    
+     //==========================================================================
+
+
+    void Cli::load(std::vector<std::string> & tokens, Character * c) {
+
+
+        if (tokens.size() == 2) {
+            Engine::get_instance()->load_file(tokens[1]);
         } else {
             cout << "invalid command" << endl;
         }

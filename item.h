@@ -24,6 +24,8 @@ namespace adventure {
 
         virtual std::string to_string() const;
 
+        virtual std::string class_name() const;
+
 
     protected:
 

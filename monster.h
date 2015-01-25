@@ -13,6 +13,8 @@ namespace adventure {
         Monster(std::string name, std::string type, Env *current_room, int health, int damage, bool alive);
 
         virtual ~Monster();
+
+        virtual std::string class_name() const;
     };
 }
 

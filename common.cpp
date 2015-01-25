@@ -2,9 +2,15 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 int adventure::get_rand(int lower, int higher) {
     return (int) rand() % (higher - lower+1) + lower ;
+}
+
+std::string adventure::to_upper(std::string s) {
+    std::transform(s.begin(), s.end(),s.begin(), ::toupper);
+    return s;
 }
 
 int adventure::direction_to_int(std::string in1, std::string in2) {

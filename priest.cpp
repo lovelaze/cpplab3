@@ -58,3 +58,7 @@ void Priest::talk_to(Character * character) {
 	
 
 }
+
+std::string Priest::class_name() const {
+	return "Priest";
+}

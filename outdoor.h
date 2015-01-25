@@ -16,10 +16,17 @@ namespace adventure {
         virtual ~Outdoor();
         void climate_event(Character*);
         
+        virtual std::string class_name() const;
+        
     };
 
     class Balcony : public Outdoor {
     	using Outdoor::Outdoor;
+    	
+    	std::string class_name() const {
+	        return "Balcony";
+        }       
+
     	void on_enter(Character * c) {
     		if(c->is_player()) {
                 std::cout << "I can see the garden and a priest from here" << std::endl;

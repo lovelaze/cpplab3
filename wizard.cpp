@@ -10,6 +10,10 @@ using namespace adventure;
 Wizard::Wizard(std::string name, Env * current_room) : Human(name, "wizard", current_room, 70, 5, true){
 }
 
+Wizard::~Wizard() {
+    
+}
+
 void Wizard::action() {
 
     if (chance(30)) {
@@ -54,4 +58,8 @@ void Wizard::drop_sapphire() {
     current_room_->drop(i);
     std::cout << name() << " dropped an item on the ground" << std::endl;
     Engine::get_instance()->items().push_back(i);
+}
+
+std::string Wizard::class_name() const {
+    return "Wizard";
 }

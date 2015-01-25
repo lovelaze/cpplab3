@@ -15,6 +15,8 @@ namespace adventure {
         void fight(Character * );
         void talk_to(Character *);
 
+        virtual std::string class_name() const;
+
 
     };
 }

@@ -19,6 +19,8 @@ namespace adventure {
 
         std::string to_string() const;
 
+        virtual std::string class_name() const;
+
 	private:
 		int health_bonus_;
 

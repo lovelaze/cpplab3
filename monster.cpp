@@ -11,3 +11,8 @@ Monster::Monster(std::string name, std::string type, Env * current_room, int hea
 
 Monster::~Monster() {
 }
+
+
+std::string Monster::class_name() const {
+	return "Monster";
+}

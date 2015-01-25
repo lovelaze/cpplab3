@@ -22,7 +22,8 @@ void Outdoor::climate_event(Character * c) {
 		c->health() -= 5;
 		}
 	}
+}
 
-	
-	
+std::string Outdoor::class_name() const {
+	return "Outdoor";
 }

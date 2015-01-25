@@ -34,3 +34,7 @@ void Food::eat(Character * c) {
     c->backpack()->remove(this);
     Engine::get_instance()->remove_item(this);;
 }
+
+std::string Food::class_name() const {
+	return "Food";
+}

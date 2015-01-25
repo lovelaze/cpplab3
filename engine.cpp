@@ -16,6 +16,7 @@
 #include <sstream>
 #include <iterator>
 #include "common.h"
+#include <typeinfo>
 
 using namespace adventure;
 
@@ -32,6 +33,7 @@ Engine::Engine() {
 	loads["WIZARD"] = &Engine::new_wizard;
 	loads["PRIEST"] = &Engine::new_priest;
 	loads["CONNECT"] = &Engine::connect_envs;
+	loads["PLAYER"] = &Engine::new_player;
 }
 
 Engine::~Engine() {
@@ -118,31 +120,154 @@ Env * Engine::find_env(std::string env) {
 	return nullptr;
 }
 
+Player * Engine::find_player() {
+	for (auto it = chars_.begin(); it != chars_.end(); ++it) {
+		if ((*it)->type() == "player") {
+			return dynamic_cast<Player *>(*it);
+		}
+	}
+
+	return nullptr;
+}
+
 void Engine::load_file(std::string file) {
 
 	std::ifstream input(file);
 	std::string line;
 	std::vector<std::string> v;
 
+	int line_no = 0;
 	while(std::getline(input,line)) {
+		++line_no;
+		if (line == "") continue;
 
 		split(line,':',v);
 
+		std::cout << "[" << line_no << "] ";
 		(this->*(this->loads[v[0]])) (v);
 
 	    v.clear();
 	}
+
+	std::cout << "loaded" << std::endl;
         
 }
 
+void Engine::save_file(std::string file) {
+	std::ofstream output(file);
+
+	// save envs
+	for (Env * ep : envs_) {
+		output << to_upper(ep->class_name()) << ":" << ep->description() << std::endl;
+	}
+
+	// save neighbors
+	std::vector<std::string> temp;
+	for (Env * ep : envs_) {
+		output << "CONNECT:" << ep->description();
+
+		split(ep->directions(), '\n', temp);
+		std::vector<std::string> neighbors;
+		for (std::string s : temp) {
+			if (s != "") {
+				split(s, '-', neighbors);
+				output << ":" << neighbors[1] << "," << neighbors[0];
+				neighbors.clear();
+			}
+			
+		}
+		output << std::endl;
+		temp.clear();
+	}
+
+	// save characters
+	for (Character * cp : chars_) {
+		output << to_upper(cp->class_name()) << ":" << cp->name() << ":" << cp->current_room()->description() << ":" << cp->health() << std::endl;
+	}
+
+
+    // save item that player carries
+	Player * p = find_player();
+	if (p->has_backpack()) {
+		Backpack * bp = p->backpack();
+		output << bp->weight() << ":" << bp->volume() << ":" << bp->hold_weight() << ":" << bp->hold_volume() << ":" << "PLAYER";
+
+		for (Item * ip : bp->items_) {
+
+			std::string class_name = ip->class_name();
+			output << to_upper(class_name) << ":" << ip->name() << ":";
+
+			if (class_name == "Weapon") {
+				Weapon * wp = dynamic_cast<Weapon *>(ip);
+				output << wp->weight() << ":" << wp->volume() << ":" << wp->damage_bonus();
+
+			} else if (class_name == "Food") {
+				Food * fp = dynamic_cast<Food *>(ip);
+				output << fp->weight() << ":" << fp->volume() << ":" << fp->health_bonus();
+
+			} else if (class_name == "Item") {
+				Item * wp = dynamic_cast<Item *>(ip);
+				output << wp->weight() << ":" << wp->volume();
+
+			}
+
+			output << std::endl;
+
+			}
+
+	}
+
+    // save items for each env
+    for (Env * ep : envs_) {
+
+    	for (Item * ip : ep->items_) {
+
+    		if (ip != nullptr) {
+				std::string class_name = ip->class_name();
+				output << to_upper(class_name) << ":" << ip->name() << ":";
+
+				if (class_name == "Backpack") {
+				    Backpack * bp = dynamic_cast<Backpack *>(ip);
+					output << bp->weight() << ":" << bp->volume() << ":" << bp->hold_weight() << ":" << bp->hold_volume();
+
+				} else if (class_name == "Weapon") {
+					Weapon * wp = dynamic_cast<Weapon *>(ip);
+					output << wp->weight() << ":" << wp->volume() << ":" << wp->damage_bonus();
+
+				} else if (class_name == "Food") {
+					Food * fp = dynamic_cast<Food *>(ip);
+					output << fp->weight() << ":" << fp->volume() << ":" << fp->health_bonus();
+
+				} else if (class_name == "Item") {
+					Item * wp = dynamic_cast<Item *>(ip);
+					output << wp->weight() << ":" << wp->volume();
+
+				}
+
+				output << ":" << ep->description() << std::endl;
+	    		}
+		}
+    }
+
+}
+
+
+void Engine::reset() {
+	//delete player;
+	clear_vector(items_);
+	clear_vector(chars_);
+	clear_vector(envs_);
+}
 
 void Engine::init_game() {
 	srand(time(0));
 
 	load_file("loadfile");
+	player = find_player();
+	save_file("savefile");
 
-	player = new Player("Adrian the almighty god of godness", Engine::get_instance()->find_env("main hall"));
-	chars_.push_back(player);
+	//player = new Player("Adrian the almighty god of godness", Engine::get_instance()->find_env("main hall"));
+	//chars_.push_back(player);
 
 	/*
 	auto spawnItem = [=](Item * i,Env * env) {

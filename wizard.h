@@ -9,12 +9,14 @@ namespace adventure {
 
     public:
         Wizard(std::string name, Env * current_room);
+        virtual ~Wizard();
 
         void action();
         void fight(Character * );
         void talk_to(Character *);
         void on_death();
 
+        virtual std::string class_name() const;
 
     private:
     	void drop_sapphire();

@@ -164,3 +164,7 @@ void Character::on_death() {
 bool Character::is_player() const {
     return type() == "player";
 }
+
+std::string Character::class_name() const {
+    return "Character";
+}

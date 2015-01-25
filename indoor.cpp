@@ -22,3 +22,7 @@ void Indoor::climate_event(Character * c) {
 	}
 	
 }
+
+std::string Indoor::class_name() const {
+	return "Indoor";
+}

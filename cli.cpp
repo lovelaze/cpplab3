@@ -25,6 +25,8 @@ Cli::Cli() {
     commands["stats"] = &Cli::stats;
     commands["eat"] = &Cli::eat;
     commands["talk"] = &Cli::talk;
+    commands["save"] = &Cli::save;
+    commands["load"] = &Cli::load;
 
 }
 

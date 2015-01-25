@@ -14,11 +14,18 @@ namespace adventure {
         virtual ~Indoor();
 
         void climate_event(Character*);
+        
+        virtual std::string class_name() const;
 
     };
 
     class Cellar : public Indoor {
     	using Indoor::Indoor;
+    	
+    	std::string class_name() const {
+            return "Cellar";
+        }
+    	
     	void on_enter(Character * c) {
 
             if (c->is_player()) {

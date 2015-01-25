@@ -33,3 +33,7 @@ std::string Weapon::to_string() const {
 	o << name_ << " : " << weight_ << " (weight) " << volume_ << " (volume) " << damage_bonus_ << " (damage)";
 	return o.str();
 }
+
+std::string Weapon::class_name() const {
+	return "Weapon";
+}

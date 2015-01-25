@@ -53,6 +53,8 @@ namespace adventure {
 
         bool is_player() const;
 
+        virtual std::string class_name() const;
+
     protected:
 
         Env * current_room_;

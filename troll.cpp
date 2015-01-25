@@ -55,3 +55,8 @@ void Troll::fight(Character * character) {
     }
 
 }
+
+
+std::string Troll::class_name() const {
+    return "Troll";
+}

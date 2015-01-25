@@ -26,7 +26,7 @@ std::string Env::directions() const {
 
         if (neighbors_[i] != nullptr) {
 
-            oss << neighbors_[i]->description() << " - " << int_to_direction(i) << std::endl;
+            oss << neighbors_[i]->description() << "-" << int_to_direction(i) << std::endl;
         }
 
     }
@@ -170,4 +170,8 @@ void Env::on_enter(Character * c) {
 
 void Env::add_char(Character * c) {
     characters_.push_back(c);
+}
+
+std::string Env::class_name() const {
+    return "Env";
 }

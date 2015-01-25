@@ -36,12 +36,15 @@ namespace adventure {
 		bool remove_env(Env *);
 
 		Env * find_env(std::string);
-
+		Player * find_player();
 
 		void init_game();
 		void run();
 		void update_chars();
 		void printIntro() const;
+
+		void load_file(std::string);
+		void save_file(std::string);
 
 	private:
 
@@ -53,8 +56,7 @@ namespace adventure {
 
 		template <class T>
 		void clear_vector(std::vector<T *> &);
-
-		void load_file(std::string);
+		void reset();
 
 		std::map<std::string, load_func> loads;
 

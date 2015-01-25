@@ -39,3 +39,7 @@ std::string Item::to_string() const {
 	o << name_ << " : " << weight_ << " (weight) " << volume_ << " (volume) ";
 	return o.str();
 }
+
+std::string Item::class_name() const {
+	return "Item";
+}

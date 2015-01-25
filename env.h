@@ -51,11 +51,14 @@ namespace adventure {
         Item * find_item(std::string name) const;
 
         void add_char(Character *);
+        
+        virtual std::string class_name() const;
+
+        std::vector<Item *> items_;
 
     protected:
         std::string description_;
         std::vector<Env *> neighbors_;
-        std::vector<Item *> items_;
         std::vector<Character *> characters_;
 
         bool outdoor_;
