@@ -21,6 +21,39 @@ Priest::~Priest() {
 
 void Priest::action() {
 
+	auto test = [](int x, auto fnc) -> bool {
+        
+        if (chance(x)) {
+        	fnc();
+        	return true;
+        }
+        
+        return false;
+    };
+
+    if (test(30, [&]() {
+    	if (mana_ < max_mana_) {
+			mana_ += 10;
+			if(mana_ > max_mana_) mana_ = max_mana_;
+
+			std::cout << name() << " has regained some mana" << std::endl;	
+		}
+
+    	})) {
+
+    } else if(test(25, [&]() {
+    	Food * i = new Food("mushroom", 5, 5, 5);
+
+		int ran = get_rand(0, Engine::get_instance()->envs().size()-1);
+		Env * e = Engine::get_instance()->envs()[ran];
+
+		e->drop(i);
+		std::cout << name() << " made a mushroom appear in the " << e->description() << std::endl;
+
+	    Engine::get_instance()->items().push_back(i);
+    })) {}
+
+/*
 	if (chance(30)) {
 
 		if (mana_ < max_mana_) {
@@ -41,6 +74,7 @@ void Priest::action() {
 
 	    Engine::get_instance()->items().push_back(i);
 	}
+	*/
         
 }
 

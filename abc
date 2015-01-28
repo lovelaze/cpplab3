@@ -6,23 +6,25 @@ OUTDOOR:garden
 OUTDOOR:forest
 BALCONY:balcony
 CONNECT:main hall:north,kitchen:east,bedroom:south,garden
-CONNECT:kitchen:south,main hall:north,cellar
-CONNECT:bedroom:west,main hall:east,balcony
-CONNECT:cellar:south,kitchen:east,forest
+CONNECT:kitchen:north,cellar:south,main hall
+CONNECT:bedroom:east,balcony:west,main hall
+CONNECT:cellar:east,forest:south,kitchen
 CONNECT:garden:north,main hall:south west,forest
 CONNECT:forest:north east,garden:west,cellar
 CONNECT:balcony:north west,bedroom
-PLAYER:Adrian:main hall:60
-TROLL:Guupa:kitchen:100
+PLAYER:Adrian:kitchen:45
+TROLL:Guupa:kitchen:80
 TROLL:Trihx:cellar:100
 TROLL:Ghrar:balcony:100
 PRIEST:Velen:garden:50
-WIZARD:Galotrix:forest:70
-BACKPACK:pengapungen:1:1:100:100:main hall
+WIZARD:Galotrix:kitchen:70
+BACKPACK:pengapung:1:1:100:100:PLAYER
+FOOD:chicken:2:1:20:PLAYER
+FOOD:sapphire:2:1:15:main hall
+FOOD:mushroom:5:5:5:cellar
 ITEM:poop:20:5:garden
 ITEM:poop:20:5:garden
 ITEM:megastone:1000:1000:garden
 WEAPON:excalibur:25:1:15:garden
-FOOD:chicken:2:1:20:kitchen
+FOOD:mushroom:5:5:5:garden
 FOOD:apple:2:1:15:balcony
-FOOD:sapphire:2:1:15:main hall

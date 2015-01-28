@@ -20,7 +20,7 @@
 
 using namespace adventure;
 
-Engine::Engine() {
+Engine::Engine() : running_(true) {
 	loads["INDOOR"] = &Engine::new_indoor; 
 	loads["OUTDOOR"] = &Engine::new_outdoor;
 	loads["CELLAR"] = &Engine::new_cellar;
@@ -49,6 +49,7 @@ void Engine::clear_vector(std::vector<T *> & v) {
 	for (T * t : v) {
 		delete t;
 	}
+	
 }
 
 Engine * Engine::get_instance() {
@@ -132,6 +133,13 @@ Player * Engine::find_player() {
 
 void Engine::load_file(std::string file) {
 
+	clear_vector(envs_);
+	envs_.clear();
+	clear_vector(chars_);
+	envs_.clear();
+	clear_vector(items_);
+	envs_.clear();
+
 	std::ifstream input(file);
 	std::string line;
 	std::vector<std::string> v;
@@ -144,12 +152,27 @@ void Engine::load_file(std::string file) {
 		split(line,':',v);
 
 		std::cout << "[" << line_no << "] ";
+
+		for (std::string s : v) {
+			std::cout << s << ", ";
+		}
+
+		
 		(this->*(this->loads[v[0]])) (v);
+		
 
 	    v.clear();
 	}
 
+	player = find_player();
+
+	running_ = false;
+	std::cout << "player = ";
+	std::cout << player->name() << std::endl;
+	std::cout << envs_.size() << std::endl << chars_.size() << std::endl << items_.size() << std::endl;
+
 	std::cout << "loaded" << std::endl;
+	
         
 }
 
@@ -185,12 +208,11 @@ void Engine::save_file(std::string file) {
 		output << to_upper(cp->class_name()) << ":" << cp->name() << ":" << cp->current_room()->description() << ":" << cp->health() << std::endl;
 	}
 
-
     // save item that player carries
 	Player * p = find_player();
 	if (p->has_backpack()) {
 		Backpack * bp = p->backpack();
-		output << bp->weight() << ":" << bp->volume() << ":" << bp->hold_weight() << ":" << bp->hold_volume() << ":" << "PLAYER";
+		output << "BACKPACK:" << bp->name() << ":" << bp->weight() << ":" << bp->volume() << ":" << bp->hold_weight() << ":" << bp->hold_volume() << ":" << "PLAYER" << std::endl;
 
 		for (Item * ip : bp->items_) {
 
@@ -211,7 +233,7 @@ void Engine::save_file(std::string file) {
 
 			}
 
-			output << std::endl;
+			output << ":PLAYER" << std::endl;
 
 			}
 
@@ -252,19 +274,12 @@ void Engine::save_file(std::string file) {
 }
 
 
-void Engine::reset() {
-	//delete player;
-	clear_vector(items_);
-	clear_vector(chars_);
-	clear_vector(envs_);
-}
-
 void Engine::init_game() {
 	srand(time(0));
 
 	load_file("loadfile");
-	player = find_player();
-	save_file("savefile");
+	//player = find_player();
+	//save_file("savefile");
 
 	//player = new Player("Adrian the almighty god of godness", Engine::get_instance()->find_env("main hall"));
 	//chars_.push_back(player);
@@ -298,7 +313,6 @@ void Engine::init_game() {
 	balcony->addNeighbor(NORTH_WEST, bedroom);
 
 	// CHARS
-	
 
     // ITEMS
     spawnItem(new Backpack("rugsack", 10, 100, 100, 500), mainhall);
@@ -334,15 +348,13 @@ void Engine::run() {
     //skriv story här
 	printIntro();
 
-	while (player->alive() && !player->has_sapphire()) {
-		//printar allt som AIs gör
-		//std::cout << "Activity on the map: " << std::endl;
+	while (player->alive() && !player->has_sapphire() ) {
 
 		update_chars();
 
 	}
 	
-    if(player->alive() && player->has_sapphire()){
+    if(player-> alive() && player->has_sapphire()){
         std::cout << "Power runs through him like a redbull on the afternoon. Mahama!" << std::endl;
         std::cout << "YOU WIN!" << std::endl;
     } else {
@@ -364,11 +376,18 @@ std::vector<Item *> & Engine::items() {
 
 void Engine::update_chars() {
 	for (Character * c : chars_) {
+
+		if (!running_) {
+			running_ = true;
+			break;
+		}
+
 		if (c->alive()) {
 			c->action();
-			if (c->type() == "player") {
+			/*
+			if (c != nullptr && c->type() == "player") {
 				std::cout <<  std::endl;
-			}
+			}*/
 		}
 	}
 }

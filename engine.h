@@ -7,6 +7,8 @@
 #include "item.h"
 #include "player.h"
 
+#include <iostream>
+
 
 
 namespace adventure {
@@ -46,9 +48,16 @@ namespace adventure {
 		void load_file(std::string);
 		void save_file(std::string);
 
+		void set_running(bool b) {running_ = b;};
+		bool running() const {return running_;};
+
+		bool prutt(){std::cout << "prutt" << std::endl; return true;};
+
 	private:
 
 		Player * player;
+
+		bool running_;
 
 		std::vector<Env *> envs_;
 		std::vector<Character *> chars_;
@@ -56,7 +65,6 @@ namespace adventure {
 
 		template <class T>
 		void clear_vector(std::vector<T *> &);
-		void reset();
 
 		std::map<std::string, load_func> loads;
 

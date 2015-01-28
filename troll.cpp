@@ -20,6 +20,8 @@ void Troll::talk_to(Character * c) {
 }
 
 void Troll::action() {
+
+    
     
 
     if(health() < 15){
